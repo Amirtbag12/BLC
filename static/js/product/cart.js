@@ -2,6 +2,15 @@ $(document).ready(function() {
   var cart = {}
   function pageData() {
     let user = $('input[name=user]').val();
+    // set page content
+    $(".cardtable").html('<tr>\
+    <th>محصول</th>\
+    <th>تصویر محصول</th>\
+    <th>قیمت (تومان)</th>\
+    <th>تعداد</th>\
+    <th>جمع جزء</th>\
+    <th>عملیات</th>\
+  </tr>');
     $.get(`/api/cart/?ordering=${user}`, function(data) {
       let rest = data.results;
         for(let api = 0; api <= data.count; api++){
@@ -17,8 +26,21 @@ $(document).ready(function() {
             'collection':rest[api].product_collection,
             'count':data.count,
           });
-          // set page content
-          console.log(cart);
+        // set dynimic site
+        $("#cardtable").append('<tr>\
+        <td>'+ cart['title'] +'</td>\
+        <td>\
+          <img id="image'+ cart['id'] +'" class="image'+ cart['id'] +'" src="'+ cart['image'] +'" width="80px" alt="'+ cart['title'] +'">\
+        </td>\
+        <td>'+ cart['price'] +'</td>\
+        <td><input type="number" id="quantity" name="quantity'+cart['id']+'" class="quantity'+cart['id']+'" value="'+ cart['quantity'] +'" min="0"\
+        <button id="update'+cart['id']+'" type="button" class="btn btn-outline-danger update'+cart['id']+'">به روز رسانی</button>\
+        </td>\
+        <td>'+ parseInt(cart['price']) * parseInt(cart['quantity']) +'</td>\
+        <td>\
+            <button id="remove'+ cart['id'] +'" type="button" class="btn btn-outline-danger remove'+ cart['id'] +'">حذف</button>\
+        </td>\
+      </tr>');
         }
     });
   }

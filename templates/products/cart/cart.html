@@ -11,35 +11,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12">
-      <table class="cardtable">
-        <tr>
-          <th>محصول</th>
-          <th>تصویر محصول</th>
-          <th>قیمت (تومان)</th>
-          <th>تعداد</th>
-          <th>جمع جزء</th>
-          <th>عملیات</th>
-        </tr>
-        {% for product in cart_items %}
-        <tr>
-          <td>{{ product.product_title}}</td>
-          <td>
-            <img src="{{product.image}}" width="80px" alt="{{ product.product_title}}">
-          </td>
-          <td>{{product.price}}</td>
-          <td>
-              {% csrf_token %}
-          </td>
-          <td>{{ product.calculate_item_price }}</td>
-          <td>
-              <button id="remove_from_cart" type="button" class="btn btn-outline-danger remove_from_cart">حذف</button>
-          </td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="5">سبد خرید شما خالی است.</td>
-        </tr>
-        {% endfor %}
+      <table id="cardtable" class="cardtable">
+        {% csrf_token %}
       </table>
     </div>
 

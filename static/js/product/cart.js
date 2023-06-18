@@ -8,6 +8,7 @@ $(document).ready(function() {
     <th>تصویر محصول</th>\
     <th>قیمت (تومان)</th>\
     <th>تعداد</th>\
+    <th>رنگ بندی</th>\
     <th>جمع جزء</th>\
     <th>عملیات</th>\
   </tr>');
@@ -33,8 +34,9 @@ $(document).ready(function() {
           <img id="image'+ cart['id'] +'" class="image'+ cart['id'] +'" src="'+ cart['image'] +'" width="80px" alt="'+ cart['title'] +'">\
         </td>\
         <td>'+ cart['price'] +'</td>\
-        <td><input type="number" id="quantity" name="quantity'+cart['id']+'" class="quantity'+cart['id']+'" value="'+ cart['quantity'] +'" min="0"\
+        <td><input type="number" id="quantity" name="quantity'+cart['id']+'" class="quantity'+cart['id']+'" value="'+ cart['quantity'] +'" min="0">\
         <button id="update'+cart['id']+'" type="button" class="btn btn-outline-danger update'+cart['id']+'">به روز رسانی</button>\
+        <td><div style="background-color: '+ cart['color'] +';"></div></td>\
         </td>\
         <td>'+ parseInt(cart['price']) * parseInt(cart['quantity']) +'</td>\
         <td>\

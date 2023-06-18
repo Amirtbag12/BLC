@@ -20,9 +20,12 @@
 
 @import url("product/Checkout/Checkout.css");
 
+@import url("product/comparison/comparison.css");
+
 @import url("util/404page/404page.css");
 
 @import url("product/productarchive/productarchive.css");
+
 @import url("product/productsingle/productsingle.css");
 
 @import url("product/cart/cart.css");

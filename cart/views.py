@@ -49,7 +49,7 @@ def add_to_cart(request):
                 product = InventoryItem.objects.get(pk=product_id)
                 if product.is_available and product.is_active:
                     if(Cart.objects.filter(user=request.user.phoneNumber, product_title=product_title, color=product_color_text)):
-                        return JsonResponse({'status':"کالا با رنگ بندی انتحاب شده هم اکنون در سبد خرید شما موجود است", 'success': False})
+                        return JsonResponse({'status':"کالا با رنگ بندی انتخاب شده هم اکنون در سبد خرید شما موجود است", 'success': False})
                     else:
                         quantity_requested = product_quantity
                         if quantity_requested <= product.quantity and quantity_requested <= product_color_quantity :

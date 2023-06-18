@@ -4,11 +4,11 @@ $(document).ready(function() {
     let user = $('input[name=user]').val();
     // set page content
     $(".cardtable").html('<tr>\
+    <th>رنگ</th>\
     <th>محصول</th>\
     <th>تصویر محصول</th>\
     <th>قیمت (تومان)</th>\
     <th>تعداد</th>\
-    <th>رنگ بندی</th>\
     <th>جمع جزء</th>\
     <th>عملیات</th>\
   </tr>');
@@ -29,24 +29,24 @@ $(document).ready(function() {
           });
         // set dynimic site
         $("#cardtable").append('<tr>\
+        <td style="width: 20px;height: 20px;border-radius: 50%; background-color: '+ cart['color'] +'; margin: 50px;"></td>\
         <td>'+ cart['title'] +'</td>\
         <td>\
           <img id="image'+ cart['id'] +'" class="image'+ cart['id'] +'" src="'+ cart['image'] +'" width="80px" alt="'+ cart['title'] +'">\
         </td>\
         <td>'+ cart['price'] +'</td>\
-        <td><input type="number" id="quantity" name="quantity'+cart['id']+'" class="quantity'+cart['id']+'" value="'+ cart['quantity'] +'" min="0">\
-        <button id="update'+cart['id']+'" type="button" class="btn btn-outline-danger update'+cart['id']+'">به روز رسانی</button>\
-        <td><div style="background-color: '+ cart['color'] +';"></div></td>\
+        <td><input type="number" id="quantity" name="'+cart['id']+'quantity" class="quantity'+cart['id']+'" value="'+ cart['quantity'] +'" min="0">\
+        <button name="'+cart['id']+'btn" type="button" class="btn btn-outline-danger '+cart['id']+'btn">به روز رسانی</button>\
         </td>\
         <td>'+ parseInt(cart['price']) * parseInt(cart['quantity']) +'</td>\
         <td>\
-            <button id="remove'+ cart['id'] +'" type="button" class="btn btn-outline-danger remove'+ cart['id'] +'">حذف</button>\
+            <button type="button" class="btn btn-outline-danger">حذف</button>\
         </td>\
       </tr>');
         }
     });
+        console.log(cart['id']);
   }
-
   // update cart button 
   $('.update_quantity').click(function(e) {
     e.preventDefault();

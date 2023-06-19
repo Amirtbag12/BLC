@@ -57,6 +57,15 @@ $(document).ready(function() {
   
     $('#search_product').click(function() {
       var search_text = document.getElementById('search_input').value;
+      if(search_text == ''){
+        Swal.fire({
+          icon: "error",
+          title: 'لطفا یک مقدار برای جستجو وارد نمایید',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        return;
+      }
       var perPage = 8;
       var page = 1;
       var startIndex = (page - 1) * perPage;

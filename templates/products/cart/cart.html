@@ -2,6 +2,7 @@
 {% load static %}
 {% block TITLE %}سبد خرید{% endblock %}
 {% block CONTENT %}
+{% csrf_token %}
 <header class="headerblog">
   <div class="h1divhead">
     <h1 class="blogh1 white-color">سبد خرید</h1>
@@ -9,10 +10,41 @@
 </header>
 <input type="hidden" name="user" value="{{ request.user.phoneNumber }}">
 <div class="container-fluid">
-  <div class="row">
+  <div class="row product_data">
     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12">
-      <table id="cardtable" class="cardtable">
-        {% csrf_token %}
+      <table class="cardtable">
+        <tr>
+          <th>رنگ</th>
+          <th>محصول</th>
+          <th>تصویر محصول</th>
+          <th>قیمت (تومان)</th>
+          <th>تعداد</th>
+          <th>جمع جزء</th>
+          <th>عملیات</th>
+        </tr>
+        {% for product in cart_items %}
+        <tr>
+          <td>
+            <div class="selected-color" style="background-color: {{product.color}};"></div>
+          </td>
+          <td class="product_title" value="{{product_title}}">{{ product.product_title}}</td>
+          <td>
+            <img src="{{product.image}}" width="80px" alt="{{ product.product_title}}">
+          </td>
+          <td class="product_price" value="">{{product.price}}</td>
+          <td>
+            <input type="number" id="{{product.product_id}}" class="quantity" value="{{ product.quantity }}" min="0">
+            <button type="button" class="btn btn-outline-danger update_quantity" onclick="updateCart('{{product.product_title}}', '{{product.product_id}}', '{{ product.color_quantity }}');">به‌روزرسانی</button></td>
+          <td>{{ product.calculate_item_price }}</td>
+          <td>
+              <button type="button" class="btn btn-outline-danger remove_from_cart" onclick="removeItem('{{product.product_title}}');">حذف</button>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">سبد خرید شما خالی است.</td>
+        </tr>
+        {% endfor %}
       </table>
     </div>
 
@@ -22,17 +54,18 @@
           <td class="h4">جمع کل سبد خرید (تومان)</td>
         </tr>
         <tr>
-          <td>تخفیف</td>
-          <td>
-              {{ discount }}
-              <button id="clear_cart" type="button" class="btn btn-outline-danger clear_cart">خالی کردن سبد خرید</button>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="افزودن کد تخفیف">
+            <button type="submit" class="btn btn-danger">اعمال</button>
+        </div>
+      </tr>
+      <tr>
             <td>
-              <button id="discount_code" type="button" class="btn btn-outline-danger discount_code">اعمال تخفیف</button>
+              <button type="button" class="btn btn-outline-danger order">ثبت سفارش و پرداخت</button></td>
             </td>
-            <td><button id="order" type="button" class="btn btn-outline-danger order">ثبت سفارش و پرداخت</button></td>
-            </td>
-          </td>
-        </tr>
+            <td>
+              <button type="button" class="btn btn-outline-danger clear_cart" onclick="clearCart();">خالی کردن سبد خرید</button>
+          </td></tr>
         <tr>
           <td>جمع کل</td>
           <td>{{ cart_total }}</td>

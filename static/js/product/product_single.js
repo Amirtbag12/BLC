@@ -79,7 +79,7 @@ $(document).ready(function() {
         }
         if (product.PRODUCT_COLORS.length > 0) {
           for (let j = 0; j < product.PRODUCT_COLORS.length; j++) {
-            colorOptions += `<option value="${product.PRODUCT_COLORS[j].color}">${product.PRODUCT_COLORS[j].color_title}</option>`;
+            colorOptions += `<option value="${product.PRODUCT_COLORS[j].color}"selected>${product.PRODUCT_COLORS[j].color_title}</option>`;
             color_quantity_dict[product.PRODUCT_COLORS[j].color] = product.PRODUCT_COLORS[j].pquantity;
             if(j < product.PRODUCT_COLORS.length){
               let selectedValue = product.PRODUCT_COLORS[j].color
@@ -208,6 +208,7 @@ $(document).ready(function() {
             showConfirmButton: false,
             timer: 2000,
           });
+          location.reload(true)
         }
       },
       error: function(xhr, status, error) {

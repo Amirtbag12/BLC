@@ -118,6 +118,8 @@ TEMPLATES = [
                 'cart.context_processors.favourite_items',
                 'cart.context_processors.comparison_items',
                 'cart.context_processors.cart_total',
+                'user_accounts.context_processors.user_items',
+                'user_accounts.context_processors.customer_items',
 
             ],
         },

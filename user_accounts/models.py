@@ -29,27 +29,21 @@ class CustomUserManager(BaseUserManager):
 
 
 class user_accounts(AbstractBaseUser, PermissionsMixin):
-    id = models.BigAutoField(db_column='id',primary_key=True, unique=True)
-    email = models.CharField(db_column='email',max_length=120, unique=True, null=True)
-    username = models.CharField(db_column='username',max_length=120, unique=True, null=True)
+    id = models.BigAutoField(db_column='id',primary_key=True, unique=True, verbose_name='شناسه کاربری')
+    email = models.CharField(db_column='email',max_length=120, unique=True, null=True, verbose_name='پست الکترونیک')
+    username = models.CharField(db_column='username',max_length=120, unique=True, null=True, verbose_name='نام کاربری')
     WPOPass = models.CharField(db_column='WPOPass',max_length=100, default=False, null=True)
-    first_name = models.CharField(max_length=100, blank=True, null=True)
-    last_name = models.CharField(max_length=100, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
-    pelak = models.CharField(max_length=20, blank=True, null=True)
-    address2 = models.CharField(max_length=200,blank=True, null=True)
-    ostan = models.CharField(max_length=100,blank=True, null=True)
-    city = models.CharField(max_length=100,blank=True, null=True)
-    zip_code = models.CharField(max_length=10)
-    phoneNumber = models.CharField(db_column='phoneNumber', max_length=20, unique=True)
-    is_active = models.BooleanField(db_column='is_active',default=True)
-    is_staff = models.BooleanField(db_column='is_staff',default=False)
+    first_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام')
+    last_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام خانوادگی')
+    phoneNumber = models.CharField(db_column='phoneNumber', max_length=20, unique=True, verbose_name='شماره تماس')
+    is_active = models.BooleanField(db_column='is_active',default=True, verbose_name='وضعیت کاربر')
+    is_staff = models.BooleanField(db_column='is_staff',default=False, verbose_name='وضعیت راهبری')
     date_joined = forms.DateTimeField(
         label='Date Joined',
+        verbose_name='تاریخ عضویت',
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-        disabled=True  
     )
-    last_login = models.DateTimeField(db_column='last_login',auto_now_add=True)
+    last_login = models.DateTimeField(db_column='last_login',auto_now_add=True, verbose_name='آخرین فعالیت')
     has_new_password = models.BooleanField(db_column='has_new_password',default=True)
 
     USERNAME_FIELD = 'phoneNumber'
@@ -64,3 +58,18 @@ class user_accounts(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران سایت'
+
+
+class Customer(AbstractBaseUser, PermissionsMixin):
+    customer = models.CharField(db_column='email',max_length=120, unique=True, null=True, verbose_name='مشتری')
+    first_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام')
+    last_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام خانوادگی')
+    address = models.CharField(max_length=100, blank=True, null=True, verbose_name='آدرس دقیق')
+    pelak = models.CharField(max_length=100, blank=True, null=True, verbose_name='پلاگ\زنگ')
+    ostan = models.CharField(max_length=100, blank=True, null=True, verbose_name='استان محل سکونت')
+    city = models.CharField(max_length=100, blank=True, null=True, verbose_name='شهر محل سکونت')
+    zip_zode = models.CharField(max_length=100, blank=True, null=True, verbose_name='کد پستی')            
+
+    class Meta:
+        verbose_name = 'مشتری'
+        verbose_name_plural = 'مشتریان سایت'

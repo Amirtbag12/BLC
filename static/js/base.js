@@ -6,9 +6,9 @@ const App = () => {
   return (
     <FocusTrapReact>
       <div>
-        <h1>My Focus-Trapped App</h1>
-        <p>This is a paragraph inside a focus-trapped element.</p>
-        <button>Click me!</button>
+        <h1>2020 Black</h1>
+        <p>This is online shop.</p>
+        <button>Lets go shopping !</button>
       </div>
     </FocusTrapReact>
   );

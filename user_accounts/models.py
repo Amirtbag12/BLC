@@ -40,7 +40,6 @@ class user_accounts(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(db_column='is_staff',default=False, verbose_name='وضعیت راهبری')
     date_joined = forms.DateTimeField(
         label='Date Joined',
-        verbose_name='تاریخ عضویت',
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
     )
     last_login = models.DateTimeField(db_column='last_login',auto_now_add=True, verbose_name='آخرین فعالیت')
@@ -60,8 +59,8 @@ class user_accounts(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'کاربران سایت'
 
 
-class Customer(AbstractBaseUser, PermissionsMixin):
-    customer = models.CharField(db_column='email',max_length=120, unique=True, null=True, verbose_name='مشتری')
+class Customer(models.Model):
+    customer = models.CharField(max_length=120, unique=True, null=True, verbose_name='مشتری')
     first_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام')
     last_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام خانوادگی')
     address = models.CharField(max_length=100, blank=True, null=True, verbose_name='آدرس دقیق')

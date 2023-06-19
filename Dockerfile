@@ -20,7 +20,7 @@ ENV LC_ALL fa_IR.UTF-8
 COPY . .
 
 # Create a virtual environment
-RUN python -m venv venv
+RUN python -m venv data
 
 # Activate the virtual environment
 SHELL ["/bin/bash", "-c"]

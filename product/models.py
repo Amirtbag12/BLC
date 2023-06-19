@@ -269,6 +269,7 @@ class Discount(models.Model):
 
 class InventoryItem(RoutablePageMixin, Page):
     ''' Inventory => &&& <= Products '''
+    shenase = models.CharField(max_length=300, verbose_name='شناسه محصول',null=False, blank=False )
     product_title = models.CharField(max_length=300, verbose_name='نام و مدل محصول', null=True, blank=True)
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     keywords = models.TextField(verbose_name='کلید واژه محصول', db_index=True, null=True, blank=True)
@@ -293,8 +294,8 @@ class InventoryItem(RoutablePageMixin, Page):
     date = models.DateTimeField("Post date", default=timezone.now)
     brand = models.ForeignKey(
         'brand.BrandPage',
-        null=True, blank=True,
-        on_delete=models.SET_NULL,
+        null=False, blank=False,
+        on_delete=models.PROTECT,
         related_name='+',
         verbose_name='برند محصول',
         help_text='یک برند برای محصول انتخاب کنید',
@@ -318,6 +319,7 @@ class InventoryItem(RoutablePageMixin, Page):
     parent_page_types = ['product.ProductIndex']
 
     content_panels = Page.content_panels + [
+        FieldPanel('shenase'),
         FieldPanel('product_title'),
         FieldPanel('brand'),
         FieldPanel('keywords'),
@@ -327,7 +329,7 @@ class InventoryItem(RoutablePageMixin, Page):
             InlinePanel("PRODUCT_SLIDE", max_num=5, label="تصویر محصول"),
         ], heading="انتخاب اسلاید تصاویر برای محصول"),
         MultiFieldPanel([
-            InlinePanel("PRODUCT_COLORS", label="رنگ بندی محصول"),
+            InlinePanel("PRODUCT_COLORS", min_num=1, label="رنگ بندی محصول"),
         ], heading="انتخاب رنگ بندی محصول"),
         FieldPanel('quantity'),
         FieldPanel('short_description'),
@@ -346,6 +348,7 @@ class InventoryItem(RoutablePageMixin, Page):
     ]
 
     api_fields = [
+        APIField('shenase'),
         APIField('product_title'),
         APIField('comments'),
         APIField('collection'),

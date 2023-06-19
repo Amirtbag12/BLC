@@ -51,6 +51,14 @@ $(document).ready(function() {
         <td>${product.product_type}</td>
       </tr>
       <tr class="trtd-a">
+      <td>جنس محصول:</td>
+      <td>${product.brand}</td>
+    </tr>
+      <tr class="trtd-a">
+      <td>جنس محصول:</td>
+      <td>${product.product_jense}</td>
+    </tr>
+      <tr class="trtd-a">
         <td>جنس محصول:</td>
         <td>${product.product_jense}</td>
       </tr>

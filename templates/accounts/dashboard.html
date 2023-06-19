@@ -14,9 +14,20 @@
         class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-12 mb-3"
       >
         <div class="dropdown text-center">
+          {% if request.user.frist_name %}
           <span>سلام</span>
-          <strong> عباس دمرچیلو </strong>
+          <strong>{{request.user.frist_name}}</strong>
           <span>عزیز</span>
+          {% else %}
+          <script>
+            Swal.fire({
+              icon: "info",
+              title: 'کاربر گرامی لطفا اطلاعات حساب کاربری خود را تکمیل کنید',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          </script>
+          {% endif %}
           <span class="bi bi-heart-fill text-danger"></span>
         </div>
         <hr />

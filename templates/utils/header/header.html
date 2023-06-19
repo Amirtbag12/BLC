@@ -64,7 +64,7 @@
     <div class="container-fluid container-fluid-custom border-bottom">
       <div class="row">
         <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-8 col-sm-12 call">
-          <i class="bi bi-calendar3"> <span>{% jalali_now "%a, %d %b %Y" %}</span> </i>
+          <i id="header_date" class="bi bi-calendar3"> <span></span> </i>
           <a href="/shop"><i>فروشگاه آنلاین</i></a>
           <a href="/brands"><i>برند ها</i></a>
           <a href="/connect"><i>تماس با ما</i></a>
@@ -103,12 +103,13 @@
           class="col-xxl-4 col-xl-4 colp-lg-4 col-md-4 col-sm-1 col-2 search3"
         >
             <input
+              id="search_input"
               class="searchnox"
               type="search"
               placeholder="جستجو"
               aria-label="Search"
             />
-            <button id="search_product" class="searchnox red-b-color bi bi-search" type="button" />
+            <button id="search_product" class="searchnox red-b-color bi bi-search" type="button">
         </div>
         <div
           class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-5 logosite"
@@ -273,9 +274,19 @@
       </button>
     </div>
     <script src="{% static 'js/utils/header.js' %}"></script>
+    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
       integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
       crossorigin="anonymous"
     ></script>
     <script src="{% static 'js/utils/header.js' %}"></script>
+    <script>
+      const inputField = document.getElementById("search_input");
+      const clickButton = document.getElementById("search_product");
+      inputField.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          clickButton.click();
+        }
+      });
+    </script>

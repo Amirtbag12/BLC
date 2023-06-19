@@ -23,13 +23,15 @@ import os.path
 
 # NOTE : PLEASE KEEP THIS FILE SAFE !
 urlpatterns = [
+    path('api/cart/', CartViewSet.as_view(), name='cart-api'),
+    path('favourite/', include('cart.favourite_urls.py')),
+    path('comparison/', include('cart.comparison_urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/', include('user_accounts.urls')),
     path('UsersAccounts/', include('allauth.urls')),
     path(ADMINS_PANEL, include(wagtailadmin_urls)),
     path('UNIQUEDOC/', include(wagtaildocs_urls)),
     path(DEVELOPERS_PANEL, admin.site.urls),
-    path('api/cart/', CartViewSet.as_view(), name='cart-api'),
     path('cart/', include('cart.urls')),
     path(SITE_API, api_router.urls),
     

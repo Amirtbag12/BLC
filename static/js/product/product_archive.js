@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var perPage = 8;
     var page = 1;
-  
+
     function loadProducts() {
       var startIndex = (page - 1) * perPage;
       var endIndex = startIndex + perPage;

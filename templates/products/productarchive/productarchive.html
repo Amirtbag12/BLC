@@ -6,15 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% endblock %}
 {% block CONTENT %}
-{% if messages %}
-{% for message in messages %}
-    {% if message.tags == 'success' %}
-        <script>alert('{{ message }}');</script>
-    {% elif message.tags == 'error' %}
-    <script>alert('{{ message }}');</script>
-    {% endif %}
-{% endfor %}
-{% endif %}
+{% csrf_token %}
 <header class="headerblog">
       <div class="h1divhead">
         <h1 class="blogh1 white-color">آرشیو محصولات</h1>

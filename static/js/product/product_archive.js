@@ -32,10 +32,10 @@ $(document).ready(function() {
                       <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                       <hr />
                       <div id="TOOLS" class="tolspro">
-                      <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                        <span class="price"></span>
+                      <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
+                        <span class="price"></span></a>
                         <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                        <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
+                        <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
                       </div>
                     </div>
                   </div>
@@ -49,14 +49,15 @@ $(document).ready(function() {
                       <h3 class="card-title h4">
                         <a href="" class="black-color">${product.title}</a>
                       </h3>
+                      <span class="bi bi-heart black-color"onclick="console.log('salam')"></span>
                       <span class="red-color">${product.price}<span>تومان</span></span>
                       <hr />
                       <div id="TOOLS" class="tolspro">
-                      <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                        <span class="price"></span>
+                      <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                      <span class="price"></span>
                         <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                        <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                      </div>
+                        <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                        </div>
                     </div>
                   </div>
                 `;
@@ -115,11 +116,11 @@ function defaultProduct() {
                   <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
                     <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -135,11 +136,11 @@ function defaultProduct() {
                   <span class="red-color">${product.price}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                    <span class="price"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                  <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -192,11 +193,11 @@ function oldProduct() {
                   <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
                     <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -212,11 +213,11 @@ function oldProduct() {
                   <span class="red-color">${product.price}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                    <span class="price"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                  <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -267,11 +268,11 @@ function lowPrice() {
                   <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
                     <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -287,11 +288,11 @@ function lowPrice() {
                   <span class="red-color">${product.price}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                    <span class="price"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                  <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -342,11 +343,11 @@ function highPrice() {
                   <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
                     <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -362,11 +363,11 @@ function highPrice() {
                   <span class="red-color">${product.price}<span>تومان</span></span>
                   <hr />
                   <div id="TOOLS" class="tolspro">
-                  <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                    <span class="price"></span>
+                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                  <span class="price"></span>
                     <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                    <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                  </div>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                    </div>
                 </div>
               </div>
             `;
@@ -415,11 +416,11 @@ for(var i = minPrice; i <= maxPrice; i++){
                 <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                 <hr />
                 <div id="TOOLS" class="tolspro">
-                <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
                   <span class="price"></span>
                   <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                  <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                </div>
+                  <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','${product.PRODUCT_OFFER[0].value}')"></span>
+                  </div>
               </div>
             </div>
           `;
@@ -435,11 +436,11 @@ for(var i = minPrice; i <= maxPrice; i++){
                 <span class="red-color">${product.price}<span>تومان</span></span>
                 <hr />
                 <div id="TOOLS" class="tolspro">
-                <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
-                  <span class="price"></span>
+                <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                <span class="price"></span>
                   <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                  <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
-                </div>
+                  <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','HV','0')"></span>
+                  </div>
               </div>
             </div>
           `;
@@ -608,10 +609,10 @@ inventoryCheckbox.addEventListener("change", function() {
                     <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                     <hr />
                     <div id="TOOLS" class="tolspro">
-                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value})"></span>
                       <span class="price"></span>
                       <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
+                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},'FV','SV','HV',${product.PRODUCT_OFFER[0].value})"></span>
                     </div>
                   </div>
                 </div>
@@ -628,10 +629,10 @@ inventoryCheckbox.addEventListener("change", function() {
                     <span class="red-color">${product.price}<span>تومان</span></span>
                     <hr />
                     <div id="TOOLS" class="tolspro">
-                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value})"></span>
                       <span class="price"></span>
                       <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
+                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},'FV','SV','HV',${product.PRODUCT_OFFER[0].value})"></span>
                     </div>
                   </div>
                 </div>
@@ -688,10 +689,10 @@ specialDiscountCheckbox.addEventListener("change", function() {
                     <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                     <hr />
                     <div id="TOOLS" class="tolspro">
-                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value}})"></span>
+                    <span class="bi bi-heart" onclick="add_favourite(${product.id}, ${productPageSlug}, ${product.product_title},${product.image.url},'FV','SV',${product.PRODUCT_OFFER[0].value})"></span>
                       <span class="price"></span>
                       <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},"FV","SV","HV",${product.PRODUCT_OFFER[0].value})"></span>
+                      <span class="bi bi-arrow-left-right" onclick="add_comparison(${product.id},${productPageSlug},${product.product_title},${product.image.url},'FV','SV','HV',${product.PRODUCT_OFFER[0].value})"></span>
                     </div>
                   </div>
                 </div>

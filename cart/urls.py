@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import cart_view, add_to_cart, update_cart, remove_from_cart, apply_discount, clear_cart ,checkout
 from .favourite import add_favourite, remove_favourite, clear_favourite
-from .comparison import add_comparison, clear_comparison
+from .comparison import comparison_view ,add_comparison, clear_comparison
+
 
 urlpatterns = [
     path('', cart_view, name='cart'),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('discount', apply_discount, name='discount_apply' ),
     path('clear', clear_cart, name='clear_cart' ),
     path('checkout', checkout, name='checkout' ),
+    path('comparison', comparison_view, name="comparison")
     path('comparison/add', add_comparison, name="add_comparison"),
     path('comparison/clear', clear_comparison, name="clear_comparison"),
     path('favourite/add', add_favourite, name="add_favourite"),

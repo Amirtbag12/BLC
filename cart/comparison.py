@@ -8,6 +8,10 @@ from .models import Comparison
 
 
 @login_required
+def comparison_view(request):
+    return render(request, 'products/comparison/comparison.html')
+
+@login_required
 @csrf_exempt
 def add_comparison(request):
     if request.method == 'POST':

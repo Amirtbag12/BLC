@@ -125,11 +125,11 @@ $(document).ready(function() {
                       <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
                       <hr />
                       <div class="tolspro">
-                        <span class="bi bi-heart"></span>
-                        <span class="price"></span>
+                      <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
+                      <span class="price"></span>
                         <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                        <span class="bi bi-arrow-left-right"></span>
-                      </div>
+                        <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','${product.PRODUCT_OFFER[0].value}')"></span>
+                        </div>
                     </div>
                   </div>
                 `;
@@ -145,11 +145,11 @@ $(document).ready(function() {
                       <span class="red-color">${product.price}<span>تومان</span></span>
                       <hr />
                       <div class="tolspro">
-                        <span class="bi bi-heart"></span>
-                        <span class="price"></span>
+                      <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+                      <span class="price"></span>
                         <a href="${product.meta.html_url}"><button class="btn btn-danger addtocard" type="submit">مشاهده و خرید</button></a>
-                        <span class="bi bi-arrow-left-right"></span>
-                      </div>
+                        <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
+                        </div>
                     </div>
                   </div>
                 `;
@@ -644,3 +644,98 @@ $(document).ready(function() {
     });
   });
 });
+// add fevourite
+function add_favourite(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_add_cart_date){
+  // Data to be sent with the POST request
+  let token = $('input[name=csrfmiddlewaretoken]').val();
+  let data = {
+    'product_id': product_id,
+    'product_slug':product_slug,
+    'product_title': product_title,
+    'product_image': product_image,
+    'quantity':product_quantity,
+    'selected_color_text':product_color,
+    'add_cart_date':product_add_cart_date,
+    csrfmiddlewaretoken: token,
+  };
+  // Send request to server
+  $.ajax({
+    url: '/cart/favourite/add',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      if (response.success === false) {
+        Swal.fire({
+          icon: "success",
+          title: 'محصول به علاقه مندی ها اضافه شد',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: 'محصول به علاقه مندی ها اضافه شد',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log(status);
+      Swal.fire({
+        icon: 'محصول به علاقه مندی ها اضافه شد',
+        title: status,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  });
+}
+// add comparison
+function add_comparison(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_color_quantity, product_add_cart_date){
+  let token = $('input[name=csrfmiddlewaretoken]').val();
+  // Data to be sent with the POST request
+  let data = {
+    'product_id':product_id,
+    'product_slug':product_slug,
+    'product_title': product_title,
+    'product_image': product_image,
+    'quantity':product_quantity,
+    'selected_color_text':product_color,
+    'product_color_quantity':product_color_quantity,
+    'add_cart_date':product_add_cart_date,
+    csrfmiddlewaretoken: token,
+  };
+  // Send request to server
+  $.ajax({
+    url: '/cart/comparison/add',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      if (response.success === false) {
+        Swal.fire({
+          icon: "success",
+          title: 'محصول به مقایسه اضافه شد',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: 'محصول به مقایسه اضافه شد',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log(status);
+      Swal.fire({
+        icon: "success",
+        title: 'محصول به مقایسه اضافه شد',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  });
+}

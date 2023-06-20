@@ -79,8 +79,22 @@ class Comparison(models.Model):
     image2 = models.CharField(max_length=100, verbose_name='۲تصویر محصول', null=True, blank=True)
     color1 = models.CharField(max_length=30, verbose_name='۱رنگ محصول', null=True, blank=True)
     color2 = models.CharField(max_length=30, verbose_name='۲رنگ محصول', null=True, blank=True)
+    brand1 = models.CharField(max_length=30, verbose_name='۱برند محصول', null=True, blank=True)
+    brand2 = models.CharField(max_length=30, verbose_name='۲برند محصول', null=True, blank=True)
     color_quantity1 = models.PositiveIntegerField(verbose_name='۱تعداد رنگ بندی موجود', null=True)
     color_quantity2 = models.PositiveIntegerField(verbose_name='۲تعداد رنگ بندی موجود', null=True)
+    product_type1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='نوع محصول۱')
+    product_type2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='نوع محصول۲')
+    product_jense1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='جنس محصول۱')
+    product_jense2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='جنس محصول۲')
+    product_wight1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='وزن محصول۱')
+    product_wight2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='وزن محصول۲')
+    product_abad1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='ابعاد خارجی محصول۱')
+    product_abad2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='ابعاد خارجی محصول۲')
+    product_size1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='سایز محصول۱')
+    product_size2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='سایز محصول۲')
+    product_garr1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='گارانتی محصول۱')
+    product_garr2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='گارانتی محصول۲')
     
 
     class Meta:

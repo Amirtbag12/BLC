@@ -24,7 +24,7 @@ RUN python -m venv data
 
 # Activate the virtual environment
 SHELL ["/bin/bash", "-c"]
-RUN source venv/bin/activate
+RUN source data/bin/activate
 
 RUN pip3 install --upgrade pip
 

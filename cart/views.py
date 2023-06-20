@@ -19,8 +19,7 @@ class CartViewSet(generics.ListCreateAPIView):
     search_fields = ['user', 'product_title']
     
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-
-
+    
 
 @login_required
 def cart_view(request):

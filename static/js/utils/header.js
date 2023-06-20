@@ -667,14 +667,14 @@ function add_favourite(product_id, product_slug, product_title, product_image, p
       if (response.success === false) {
         Swal.fire({
           icon: "success",
-          title: 'محصول به علاقه مندی ها اضافه شد',
+          title: response.status,
           showConfirmButton: false,
           timer: 3000,
         });
       } else {
         Swal.fire({
           icon: "success",
-          title: 'محصول به علاقه مندی ها اضافه شد',
+          title: response.status,
           showConfirmButton: false,
           timer: 2000,
         });
@@ -683,7 +683,7 @@ function add_favourite(product_id, product_slug, product_title, product_image, p
     error: function(xhr, status, error) {
       console.log(status);
       Swal.fire({
-        icon: 'محصول به علاقه مندی ها اضافه شد',
+        icon: "success",
         title: status,
         showConfirmButton: false,
         timer: 3000,
@@ -715,14 +715,14 @@ function add_comparison(product_id, product_slug, product_title, product_image, 
       if (response.success === false) {
         Swal.fire({
           icon: "success",
-          title: 'محصول به مقایسه اضافه شد',
+          title: response.status,
           showConfirmButton: false,
           timer: 3000,
         });
       } else {
         Swal.fire({
           icon: "success",
-          title: 'محصول به مقایسه اضافه شد',
+          title: response.status,
           showConfirmButton: false,
           timer: 2000,
         });
@@ -732,7 +732,7 @@ function add_comparison(product_id, product_slug, product_title, product_image, 
       console.log(status);
       Swal.fire({
         icon: "success",
-        title: 'محصول به مقایسه اضافه شد',
+        title: status,
         showConfirmButton: false,
         timer: 3000,
       });

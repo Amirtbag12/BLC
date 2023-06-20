@@ -12,7 +12,7 @@ from .models import Comparison
 def comparison_view(request):
     return render(request, 'products/comparison/comparison.html')
 
-@login_required
+
 @csrf_exempt
 def add_comparison(request):
     if request.method == 'POST':
@@ -144,6 +144,8 @@ def add_comparison(request):
                                 return JsonResponse({'status':f"محصول {product.product_title} با موفقیت برای مقایسه اضافه شد. لطفا یک محصول دیگر نیز اضافه کنید.", 'success': True})
             except InventoryItem.DoesNotExist:
                 return JsonResponse({'status':"محصول مورد نظر پیدا نشد.", 'success': False})
+        else:
+            return JsonResponse({'status':"برای افزودن محصول به مقایسه ابتدا وارد سایت شوید", 'success': False})
     else:
         return JsonResponse({'status':"درخواست معتبر نیست", 'success': False})
 

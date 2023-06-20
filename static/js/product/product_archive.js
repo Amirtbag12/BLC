@@ -452,7 +452,7 @@ for(var i = minPrice; i <= maxPrice; i++){
   });
   }
 }
-function add_favourite(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_add_cart_date){
+export function add_favourite(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_add_cart_date){
   // Data to be sent with the POST request
   let token = $('input[name=csrfmiddlewaretoken]').val();
   let data = {
@@ -499,7 +499,7 @@ function add_favourite(product_id, product_slug, product_title, product_image, p
   });
 }
 // add comparison
-function add_comparison(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_color_quantity, product_add_cart_date){
+export function add_comparison(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_color_quantity, product_add_cart_date){
   let token = $('input[name=csrfmiddlewaretoken]').val();
   // Data to be sent with the POST request
   let data = {

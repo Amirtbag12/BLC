@@ -8,7 +8,7 @@ from django.contrib import messages
 from .models import Favourite 
 
 
-@login_required
+@csrf_exempt
 def add_favourite(request):
     if request.method == 'POST':
         if request.user.is_authenticated :
@@ -19,7 +19,8 @@ def add_favourite(request):
                 image = request.POST.get('product_image')
                 add_cart_date = int(request.POST.get('add_cart_date'))
                 if(Favourite.objects.filter(user=request.user.phoneNumber, product_title=product.product_title,)):
-                    return JsonResponse({'status':"کالا هم اکنون در علاقه مندی های شما موجود است", 'success': False})
+                    Favourite.objects.filter(user=request.user.phoneNumber, product_title=product.product_title).delete()
+                    return JsonResponse({'status':"محصول از علاقه مندی حذف شد.", 'success': True})
                 else:
                     if add_cart_date > 0:
                         Favourite.objects.create(

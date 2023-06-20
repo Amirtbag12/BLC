@@ -418,11 +418,11 @@
                   <span class="red-color">{{ item.price }}<span>تومان</span></span>
                   <hr />
                   <div class="tolspro">
-                    <span class="bi bi-heart"></span>
+                    <span onclick="add_favourite('{{item.product_id}}','{{item.slug}}','{{item.product_title}}','{{item.image}}','0', '0', '0');location.reload(true)" class="bi bi-heart"></span>
                     <a href="/shop/{{ item.slug }}"><button type="submit" class="btn btn-danger addtocard">
                       مشاهده و خرید
                     </button></a>
-                    <span class="bi bi-arrow-left-right"></span>
+                    <span class="bi bi-arrow-left-right" onclick="add_comparison('{{item.product_id}}','{{item.slug}}','{{item.product_title}}','{{item.image}}','0', '0', '0', '0')"></span>
                   </div>
                 </div>
               </div>
@@ -437,6 +437,7 @@
   </section>
 </div>
 {% block JS %}
+<script src="{% static 'js/accounts/dashboard.js' %}"></script>
 <script
   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

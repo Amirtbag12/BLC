@@ -1,0 +1,1 @@
+import {add_favourite} from '../product/product_archive.js';

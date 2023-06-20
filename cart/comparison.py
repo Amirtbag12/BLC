@@ -27,6 +27,7 @@ def add_comparison(request):
                         product = InventoryItem.objects.get(pk=product_id)
                         add_cart_date = int(request.POST.get('add_cart_date'))
                         product_color_quantity = int(request.POST.get('product_color_quantity'))
+                        product_slug = request.POST.get('product_slug')
                         for i in range(2):
                             if i == 0:
                                 if add_cart_date > 0:
@@ -44,7 +45,8 @@ def add_comparison(request):
                                         product_wight1 = product.product_wight,
                                         product_abad1 = product.product_abad,
                                         product_size1 = product.product_size,
-                                        product_garr1 = product.product_garr,)
+                                        product_garr1 = product.product_garr,
+                                        slug1= product_slug,)
                                     i = i + 1
                                     return JsonResponse({'status':f"محصول {product.product_title} با موفقیت برای مقایسه اضافه شد. لطفا یک محصول دیگر نیز اضافه کنید.", 'success': True})
                                 else:
@@ -62,7 +64,8 @@ def add_comparison(request):
                                         product_wight1 = product.product_wight,
                                         product_abad1 = product.product_abad,
                                         product_size1 = product.product_size,
-                                        product_garr1 = product.product_garr,)
+                                        product_garr1 = product.product_garr,
+                                        slug1= product_slug,)
                                     i = i + 1
                                     return JsonResponse({'status':f"محصول {product.product_title} با موفقیت برای مقایسه اضافه شد. لطفا یک محصول دیگر نیز اضافه کنید.", 'success': True})
                             elif i ==1:
@@ -81,7 +84,8 @@ def add_comparison(request):
                                         product_wight2 = product.product_wight,
                                         product_abad2 = product.product_abad,
                                         product_size2 = product.product_size,
-                                        product_garr2 = product.product_garr,)
+                                        product_garr2 = product.product_garr,
+                                        slug2= product_slug,)
                                     i = i + 1
                                     return JsonResponse({'status':f"محصول {product.product_title} نیز با موفقیت به مقایسه محصولات اضافه شده. اکنون میتوانید مقایسه دو محصول را مشاهده کنید", 'success': True})
                                 else:
@@ -99,7 +103,8 @@ def add_comparison(request):
                                         product_wight2 = product.product_wight,
                                         product_abad2 = product.product_abad,
                                         product_size2 = product.product_size,
-                                        product_garr2 = product.product_garr,)
+                                        product_garr2 = product.product_garr,
+                                        slug2= product_slug,)
                                     i = i + 1
                                     return JsonResponse({'status':f"محصول {product.product_title} نیز با موفقیت به مقایسه محصولات اضافه شده. اکنون میتوانید مقایسه دو محصول را مشاهده کنید", 'success': True})
                             elif i ==2:
@@ -119,7 +124,8 @@ def add_comparison(request):
                                         product_wight1 = product.product_wight,
                                         product_abad1 = product.product_abad,
                                         product_size1 = product.product_size,
-                                        product_garr1 = product.product_garr,)
+                                        product_garr1 = product.product_garr,
+                                        slug1= product_slug,)
                                     i = 0
                                     return JsonResponse({'status':f"محصول {product.product_title} با موفقیت برای مقایسه اضافه شد. لطفا یک محصول دیگر نیز اضافه کنید.", 'success': True})
                                 else:
@@ -137,7 +143,8 @@ def add_comparison(request):
                                         product_wight1 = product.product_wight,
                                         product_abad1 = product.product_abad,
                                         product_size1 = product.product_size,
-                                        product_garr1 = product.product_garr,)
+                                        product_garr1 = product.product_garr,
+                                        slug1= product_slug,)
                                     i = 0
                                     return JsonResponse({'status':f"محصول {product.product_title} با موفقیت برای مقایسه اضافه شد. لطفا یک محصول دیگر نیز اضافه کنید.", 'success': True})        
             except InventoryItem.DoesNotExist:

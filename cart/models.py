@@ -95,8 +95,9 @@ class Comparison(models.Model):
     product_size2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='سایز محصول۲')
     product_garr1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='گارانتی محصول۱')
     product_garr2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='گارانتی محصول۲')
+    slug1 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='اسلاگ محصول اول')
+    slug2 = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='اسلاگ محصول دوم')
     
-
     class Meta:
         verbose_name = 'مقایسه محصول'
         verbose_name_plural = 'مقایسات محصولات'

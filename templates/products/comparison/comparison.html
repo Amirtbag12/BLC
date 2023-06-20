@@ -12,11 +12,12 @@
     <div class="row">
       {% for item in comparison_items %}
       <div class="col-6">
+        {% if item.product_title1 %}
         <div class="cardprocomparison">
           <img src="{{ item.image1 }}" class="card-img-top" alt="{{item.product_title1}}" />
           <div class="card-body">
             <h3 class="card-title h4">
-              <a href="" class="black-color">{{ item.product_title1 }}</a>
+              <a href="" class="black-color">{% if item.product_title1 %}{{ item.product_title1 }}{% else %}محصولی برای مقایسه انتخاب نکردید{% endif %}</a>
             </h3>
             <span class="red-color">{{ item.price1 }}<span>تومان</span></span>
             <hr />
@@ -28,8 +29,10 @@
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
       <div class="col-6">
+        {% if item.product_title2 %}
         <div class="cardprocomparison">
           <img src="{{item.image2}}" class="card-img-top" alt="{{item.product_title2}}" />
           <div class="card-body">
@@ -46,7 +49,9 @@
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
+      {% if item.product_title1 and item.product_title2 %}
       <table class="comparisonlist col-10 container">
         <tr>
           <th colspan="2">برند:</th>
@@ -98,6 +103,7 @@
           <td>{{item.product_garr2}}</td>
         </tr>
       </table>
+      {% endif %}
       {% endfor %}
     </div>
   </div>

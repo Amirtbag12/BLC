@@ -15,6 +15,8 @@ def add_favourite(request):
             try:
                 product_id = int(request.POST.get('product_id'))
                 product = InventoryItem.objects.get(pk=product_id)
+                slug = request.POST.get('product_slug')
+                image = request.POST.get('product_image')
                 add_cart_date = int(request.POST.get('add_cart_date'))
                 if(Favourite.objects.filter(user=request.user.phoneNumber, product_title=product.product_title,)):
                     return JsonResponse({'status':"کالا هم اکنون در علاقه مندی های شما موجود است", 'success': False})
@@ -26,8 +28,8 @@ def add_favourite(request):
                             product_title = product.product_title,
                             quantity = product.quantity,
                             price = add_cart_date,
-                            image = product.image,
-                            color_quantity = product_color_quantity,
+                            image = image,
+                            slug=slug,
                         )
                         return JsonResponse({'status':f"محصول {product.product_title} با موفقیت به علاقه مندی ها اضافه شد.", 'success': True})
                     else:
@@ -37,8 +39,8 @@ def add_favourite(request):
                             product_title = product.product_title,
                             quantity = product.quantity,
                             price = product.price,
-                            image = product.image,
-                            color_quantity = product_color_quantity,
+                            image = image,
+                            slug=slug,
                         )
                         return JsonResponse({'status':f"محصول {product.product_title} با موفقیت به علاقه مندی ها اضافه شد.", 'success': True})
                             

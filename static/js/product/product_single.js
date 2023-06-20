@@ -1,13 +1,14 @@
+// set Variable
+var product
+var productPages
+let count = 1;
+let color_quantity_dict = {};
+let countSpan = document.querySelector(".count");
+let decrementBtn = document.querySelector(".decrement");
+let incrementBtn = document.querySelector(".increment");
+var cart_create_date = '0'
+var product_slug;
 $(document).ready(function() {
-  // set Variable
-  var product
-  var productPages
-  let count = 1;
-  let color_quantity_dict = {};
-  let countSpan = document.querySelector(".count");
-  let decrementBtn = document.querySelector(".decrement");
-  let incrementBtn = document.querySelector(".increment");
-  var cart_create_date = '0'
   $(".pcontent").magicTabs({
     headingTag: "h4",
   });
@@ -46,6 +47,7 @@ $(document).ready(function() {
         let get_product_price = `<span id="product_price" class="h1">${product.price} تومان</span>`;
         let get_product_short_desc = `<p id="product_short_desc">${product.short_description}</p>`;
         let get_product_desc = `<p id="product_short_desc">${product.description}</p>`;
+        product_slug = slug;
         let get_product_table = `<tr>
         <td>نوع محصول:</td>
         <td>${product.product_type}</td>
@@ -173,7 +175,6 @@ $(document).ready(function() {
       });
     });
   }
-
   // Add to cart button
   $('#add_cart_btn').click(function(e) {
     e.preventDefault();
@@ -230,7 +231,62 @@ $(document).ready(function() {
       }
     });
   });
-
+// add to favourite
+$('#add_favourite').click(function(e) {
+  e.preventDefault();
+  // Select product values from html document
+  let product_title = $('#add_to_cart_product_title').val();
+  let product_quantity = $('#count').text();
+  let product_color = $('#color-select').val();
+  let product_color_quantity = color_quantity_dict[product_color];
+  let product_add_cart_date = cart_create_date;
+  let token = $('input[name=csrfmiddlewaretoken]').val();
+  // Data to be sent with the POST request
+  let data = {
+    'product_id':productPages.id,
+    'product_title': product_title,
+    'product_collection': product.collection.id,
+    'quantity':product_quantity,
+    'selected_color_text':product_color,
+    'product_color_quantity':product_color_quantity,
+    'product_image_url':product.image.url,
+    'add_cart_date':product_add_cart_date,
+    csrfmiddlewaretoken: token,
+  };
+  // Send request to server
+  $.ajax({
+    url: '/cart/favourite/add',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      if (response.success === false) {
+        Swal.fire({
+          icon: "error",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        location.reload(true)
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log(status);
+      Swal.fire({
+        icon: "error",
+        title: status,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  });
+});
   let selectElement = document.getElementById('color-select');
   selectElement.addEventListener('change', (event) => {
     // Color Select
@@ -263,8 +319,116 @@ $(document).ready(function() {
     let get_add_to_cart_quantity = `<input id="add_to_cart_quantity" type="hidden" name="quantity" value="${count}" min="1"></input>`;
     $('#add_to_cart_quantity').html(get_add_to_cart_quantity);
   });
-
-
   //SOME LOADS
   loadPages();
 });
+// Add to comparison
+function add_comparison(){
+  let product_title = $('#add_to_cart_product_title').val();
+  let product_quantity = $('#count').text();
+  let product_color = $('#color-select').val();
+  let product_color_quantity = color_quantity_dict[product_color];
+  let product_add_cart_date = cart_create_date;
+  let token = $('input[name=csrfmiddlewaretoken]').val();
+  // Data to be sent with the POST request
+  let data = {
+    'product_id':productPages.id,
+    'product_slug':product_slug,
+    'product_title': product_title,
+    'product_image': product.image.url,
+    'product_collection': product.collection.id,
+    'quantity':product_quantity,
+    'selected_color_text':product_color,
+    'product_color_quantity':product_color_quantity,
+    'product_image_url':product.image.url,
+    'add_cart_date':product_add_cart_date,
+    csrfmiddlewaretoken: token,
+  };
+  // Send request to server
+  $.ajax({
+    url: '/cart/comparison/add',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      if (response.success === false) {
+        Swal.fire({
+          icon: "error",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log(status);
+      Swal.fire({
+        icon: "error",
+        title: status,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  });
+}
+// Add to comparison
+function add_favourite(){
+  let product_title = $('#add_to_cart_product_title').val();
+  let product_quantity = $('#count').text();
+  let product_color = $('#color-select').val();
+  let product_color_quantity = color_quantity_dict[product_color];
+  let product_add_cart_date = cart_create_date;
+  let token = $('input[name=csrfmiddlewaretoken]').val();
+  // Data to be sent with the POST request
+  let data = {
+    'product_id':productPages.id,
+    'product_slug':product_slug,
+    'product_title': product_title,
+    'product_image': product.image.url,
+    'product_collection': product.collection.id,
+    'quantity':product_quantity,
+    'selected_color_text':product_color,
+    'product_color_quantity':product_color_quantity,
+    'product_image_url':product.image.url,
+    'add_cart_date':product_add_cart_date,
+    csrfmiddlewaretoken: token,
+  };
+  // Send request to server
+  $.ajax({
+    url: '/cart/favourite/add',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      if (response.success === false) {
+        Swal.fire({
+          icon: "error",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: response.status,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log(status);
+      Swal.fire({
+        icon: "error",
+        title: status,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  });
+}

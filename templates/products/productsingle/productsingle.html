@@ -147,18 +147,8 @@
               <input id="add_to_cart_quantity" type="hidden" name="quantity" value="1" min="1">
               <button id="add_cart_btn" class="w-100 btn btn-danger addtocard" type="submit">افزودن به سبد خرید</button>
           </div>
-          <button
-            type="submit"
-            class="w-100 bi bi-arrow-left-right mt-2 btn btn-outline-danger"
-          >
-            مقایسه محصول
-          </button>
-          <button
-            type="submit"
-            class="bi bi-heart w-100 mt-2 btn btn-outline-danger"
-          >
-            علاقه مندی
-          </button>
+          <button type="submit" class="w-100 bi bi-arrow-left-right mt-2 btn btn-outline-danger" onclick="add_comparison()">مقایسه محصول</button>
+          <button type="submit" class="bi bi-heart w-100 mt-2 btn btn-outline-danger" onclick="add_favourite()">علاقه مندی</button>
           <h4 id="product_is_available" class="h4 mt-2 text-center">محصول در انبار موجود میباشد</h4>
         </div>
       </div>

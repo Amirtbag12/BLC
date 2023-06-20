@@ -43,20 +43,7 @@ class Favourite(models.Model):
     image = models.CharField(max_length=100, verbose_name='تصویر محصول', null=True, blank=True)
     color = models.CharField(max_length=30, verbose_name='رنگ محصول', null=True, blank=True)
     color_quantity = models.PositiveIntegerField(verbose_name='تعداد رنگ بندی موجود', null=True)
-    
-    def calculate_item_price(self):
-        item_price = 0
-        if self.quantity and self.price:
-            item_price = self.quantity * self.price
-        return item_price
-
-    @classmethod
-    def calculate_total_price(cls, user):
-        total_price = 0
-        fev_items = Favourite.objects.filter(user=user)
-        for fev_item in fev_items:
-            total_price += fev_item.calculate_item_price()
-        return total_price
+    slug = models.CharField(max_length=30, db_index=True, null=True, blank=True, verbose_name='اسلاگ محصول')
 
     class Meta:
         verbose_name = 'علاقه مندی کاربر '
@@ -73,8 +60,8 @@ class Comparison(models.Model):
     product_collection2 = models.CharField(max_length=100, verbose_name='۲شناسه دسته بندی محصول', null=True, blank=True)
     quantity1 = models.PositiveIntegerField(verbose_name='تعداد محصول۱', null=True)
     quantity2 = models.PositiveIntegerField(verbose_name='تعداد محصول۲', null=True)
-    price1 = models.PositiveIntegerField(verbose_name='قیمت۱', blank=False, null=False)
-    price2 = models.PositiveIntegerField(verbose_name='قیمت۲', blank=False, null=False)
+    price1 = models.PositiveIntegerField(verbose_name='قیمت۱', null=True)
+    price2 = models.PositiveIntegerField(verbose_name='قیمت۲', null=True)
     image1 = models.CharField(max_length=100, verbose_name='۱تصویر محصول', null=True, blank=True)
     image2 = models.CharField(max_length=100, verbose_name='۲تصویر محصول', null=True, blank=True)
     color1 = models.CharField(max_length=30, verbose_name='۱رنگ محصول', null=True, blank=True)

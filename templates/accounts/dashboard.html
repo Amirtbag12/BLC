@@ -404,100 +404,29 @@
             aria-labelledby="list-favorites1-list"
           >
             <div class="row">
+            {% for item in favourite_items %}
               <div class="cardpro" style="width: 18rem">
                 <img
-                  src="{% static 'img/Slide1.jpg' %}"
+                  src="{{ item.image }}"
                   class="card-img-top"
-                  alt="..."
+                  alt="{{ item.product_title }}"
                 />
                 <div class="card-body">
                   <h3 class="card-title h4">
-                    <a href="" class="black-color">مقاله شماره یک</a>
+                    <a href="" class="black-color">{{ item.product_title }}</a>
                   </h3>
-                  <span class="text-decoration-line-through icon2"
-                    >300.000</span
-                  >
-                  <span class="red-color">200.000 <span>تومان</span></span>
+                  <span class="red-color">{{ item.price }}<span>تومان</span></span>
                   <hr />
                   <div class="tolspro">
                     <span class="bi bi-heart"></span>
-                    <button type="submit" class="btn btn-danger addtocard">
-                      افزودن به سبد خرید
-                    </button>
+                    <a href="/shop/{{ item.slug }}"><button type="submit" class="btn btn-danger addtocard">
+                      مشاهده و خرید
+                    </button></a>
                     <span class="bi bi-arrow-left-right"></span>
                   </div>
                 </div>
               </div>
-              <div class="cardpro" style="width: 18rem">
-                <img
-                  src="{% static 'img/Slide2.jpg' %}"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <h3 class="card-title h4">
-                    <a href="" class="black-color">مقاله شماره یک</a>
-                  </h3>
-                  <span class="text-decoration-line-through icon2"
-                    >300.000</span
-                  >
-                  <span class="red-color">200.000 <span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                    <span class="bi bi-heart"></span>
-                    <button type="submit" class="btn btn-danger addtocard">
-                      افزودن به سبد خرید
-                    </button>
-                    <span class="bi bi-arrow-left-right"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="cardpro" style="width: 18rem">
-                <img
-                  src="{% static 'img/Slide1.jpg' %}"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <h3 class="card-title h4">
-                    <a href="" class="black-color">مقاله شماره یک</a>
-                  </h3>
-                  <span class="text-decoration-line-through icon2"
-                    >300.000</span
-                  >
-                  <span class="red-color">200.000 <span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                    <span class="bi bi-heart"></span>
-                    <button type="submit" class="btn btn-danger addtocard">
-                      افزودن به سبد خرید
-                    </button>
-                    <span class="bi bi-arrow-left-right"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="cardpro" style="width: 18rem">
-                <img
-                  src="{% static 'img/Slide1.jpg' %}"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <h3 class="card-title h4">
-                    <a href="" class="black-color">مقاله شماره یک</a>
-                  </h3>
-                  <span class="text-decoration-line-through icon2"
-                    >300.000</span
-                  >
-                  <span class="red-color">200.000 <span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                    <span class="bi bi-heart"></span>
-                    <button type="submit" class="btn btn-danger addtocard">
-                      افزودن به سبد خرید
-                    </button>
-                    <span class="bi bi-arrow-left-right"></span>
-                  </div>
+              {% endfor %}
                 </div>
               </div>
             </div>

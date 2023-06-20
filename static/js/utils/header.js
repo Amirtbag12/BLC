@@ -91,7 +91,7 @@ $(document).ready(function() {
                 </button>
                 </div>
                 <div class="plusbutton">
-                  <a href="/"><button type="button" class="btn btn-outline-danger" id="load-more">بازگشت به خانه</button></a>
+                  <a href="${window.location.href}"><button type="button" class="btn btn-outline-danger" id="load-more">بازگشت</button></a>
                 </div>
               </div>
             </div>
@@ -622,7 +622,7 @@ $(document).ready(function() {
   </svg>
 </div>
               <div class="plusbutton">
-                <a href="/"><button type="button" class="btn btn-outline-danger" id="load-more">بازگشت به خانه</button></a>
+                <a href="${window.location.href}"><button type="button" class="btn btn-outline-danger" id="load-more">بازگشت</button></a>
               </div>
             </div>
             <script

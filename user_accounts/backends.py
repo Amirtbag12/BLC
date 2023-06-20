@@ -4,6 +4,7 @@ developer : #ABS
 """
 
 # Import all requirements  
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.backends import ModelBackend
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import get_user_model
@@ -27,3 +28,5 @@ class CustomBackend(ModelBackend):
             if user.check_password(password):
                 return user
         return None
+
+

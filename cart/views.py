@@ -32,7 +32,6 @@ def cart_view(request):
     }
     return render(request, 'products/cart/cart.html',context)
 
-@login_required
 def add_to_cart(request):
     if request.method == 'POST':
         if request.user.is_authenticated :

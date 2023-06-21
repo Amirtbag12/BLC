@@ -137,7 +137,7 @@ def add_comment(request):
             name = request.POST.get('name')
             email = request.POST.get('email')
             body = request.POST.get('body')
-            if title and name and body:
+            if name and body:
                 if Comments.objects.filter(user=request.user.phoneNumber, post=post).exists():
                     return JsonResponse({'status':"شما حداکثر نظر خود را ثبت کرده اید", 'success': False})
                 else:

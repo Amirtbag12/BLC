@@ -3,6 +3,7 @@
 {% load wagtailcore_tags %}
 {% block TITLE %}{{ page.title }}{% endblock %}
 {% block CSS %}
+<link rel="stylesheet" href="{% static 'css/index/comment.css' %}" />
 <link rel="stylesheet" href="{% static 'css/product/productsingle/zoomy.css' %}" />
 {% endblock %}
 {% block CONTENT %}
@@ -100,12 +101,12 @@
               <input
                 type="text"
                 id="usernameInput"
-                placeholder="Your Name"
+                placeholder="نام"
                 required
               /> 
               <textarea
                 id="commentInput"
-                placeholder="Add a comment"
+                placeholder="یک بازخورد بنویسید"
                 required
               ></textarea>
               <input type="submit" value="Post Comment" />

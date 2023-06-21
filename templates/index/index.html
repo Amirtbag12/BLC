@@ -1,8 +1,263 @@
 {% extends "base.html" %}
+{% load static %}
 {% load wagtailcore_tags %}
-{% block TITLE %}{{ page.title }}{% endblock %}
+{% block HEADING %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="فروشگاه اینترنتی کیک پیک(kik pick) / فقط انتخاب کن(just pick it)" />
+<meta name="keywords" content="فروشگاه کیک پیک, kik pick, کلمه کلیدی ۳" />
+{% endblock %}
+{% block TITLE %}kik pick / کیک پیک{% endblock %}
+{% block CSS %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+<link rel="stylesheet" href="{% static 'css/index/main_page.css' %}" />
+{% endblock %}
 {% block CONTENT %}
-{% for product in products %}
-{{ product.product_title }}
-{% endfor %}
+    <main>
+        <header class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-sm-7 col-12 divimgmain">
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="3000">
+                                <img src="{% static 'img/img/sliderhead.jpg' %}" class="d-block w-100 imgpainpage" alt="..." />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{% static 'img/img/sliderhead1.jpg' %}" class="d-block w-100 imgpainpage" alt="..." />
+                            </div>
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-5  divimgmain">
+                    <img src="{% static 'img/img/slider1-1.jpg' %}" class="imgpainpage img-fluid" alt="..." />
+                </div>
+                <div class="col-sm-4 col-6 divimgmain">
+                    <img src="{% static 'img/img/slider2.jpg' %}" class="imgpainpage img-fluid" alt="..." />
+                </div>
+                <div class="col-sm-4 col-6 divimgmain">
+                    <img src="{% static 'img/img/slider3.jpg' %}" class="imgpainpage img-fluid" alt="..." />
+                </div>
+                <div class="col-sm-4 divimgmain">
+                    <img src="{% static 'img/img/slider4.jpg' %}" class="imgpainpage img-fluid" alt="..." />
+                </div>
+            </div>
+        </header>
+        <section class="container-fluid mt-3">
+            <div class="row red-b-color text-center">
+                <div class=" col-11">
+                    <img src="{% static 'img/img/shegeftititr.png' %}" alt="" width="80%">
+                    <div class="sliderpro">
+                        <!-- برای محصئلات ذایتامیم -->
+                        <div class="cardpromain m-1">
+                            <img src="{% static 'img/img/blurred.jpg' %}" class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <h3 class="card-title h4">
+                                    <a href="" class="black-color">مقاله شماره یک</a>
+                                </h3>
+                                <span class="text-decoration-line-through icon2">300.000</span>
+                                <span class="red-color">200.000 <span>تومان</span></span>
+                                <hr />
+                                <div class="tolspro">
+                                    <span class="bi bi-heart"></span>
+                                    <button type="submit" class="btn btn-danger addtocard">
+                                        افزودن به سبد خرید
+                                    </button>
+                                    <span class="bi bi-arrow-left-right"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- برای محصئلات ذایتامیم -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid mt-5">
+            <div class="text-center img-titr"> <img src="{% static 'img/img/cattititr.png' %}" alt="">
+            </div>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-4 g-lg-3">
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p1.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p1.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="/img/p1.jpg" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p2.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p3.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p4.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p5.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+                        <a href=""><img src="{% static 'img/img/p6.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p7.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="cat-main">
+
+                        <a href=""><img src="{% static 'img/img/p8.jpg' %}" alt="">
+                            <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+        </section>
+        <section class="container-fluid mt-3">
+            <div class="row text-center green-b-color">
+                <div class=" col-11 mb-3">
+                    <img src="{% static 'img/img/blogtititr.png' %}" alt="" width="80%">
+                    <div class="sliderblog">
+                        <!-- برای بلاگ داینامیک -->
+                        <div class="card m-1" style="width: 18rem">
+                            <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <h3 class="card-title h3">مقاله شماره یک</h3>
+                                <p class="card-text">
+                                    توضیحات کوتاه درباره محتوای مقاله برای انتخاب بهتر کاربران و
+                                    بهبود عملکرد سئو سایت
+                                </p>
+                                <a href="#">مشاهده بیشتر</a>
+                            </div>
+                        </div>
+                        <!-- برای بلاگ داینامیک -->
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4  p-2">
+                    <div class="baner-main"> <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" alt="">
+                    </div>
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-4  col-lg-4  p-2">
+                    <div class="baner-main"> <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4  p-2">
+                    <div class="baner-main"> <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-lg-6 p-2">
+                    <div class="baner-main"> <img src="{% static '/img/shopping-header-e1645291931520.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-lg-6 col-12 p-2">
+                    <div class="baner-main">
+                        <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" alt="">
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+        <section class="container-fluid mt-3">
+
+            <div class="row red-b-color text-center">
+                <div class=" col-11">
+                    <img src="{% static 'img/img/protititr.png' %}" alt="" width="80%">
+                    <div class="sliderpro2">
+                        <!-- برای محصئلات ذایتامیم -->
+                        <div class="cardpromain m-1">
+                            <img src="{% static 'img/img/blurred.jpg' %}" class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <h3 class="card-title h4">
+                                    <a href="" class="black-color">مقاله شماره یک</a>
+                                </h3>
+                                <span class="text-decoration-line-through icon2">300.000</span>
+                                <span class="red-color">200.000 <span>تومان</span></span>
+                                <hr />
+                                <div class="tolspro">
+                                    <span class="bi bi-heart"></span>
+                                    <button type="submit" class="btn btn-danger addtocard">
+                                        افزودن به سبد خرید
+                                    </button>
+                                    <span class="bi bi-arrow-left-right"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- برای محصئلات ذایتامیم -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% block JS %}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static 'js/index/main_page.js' %}"></script>
+    {% endblock %}
 {% endblock %}

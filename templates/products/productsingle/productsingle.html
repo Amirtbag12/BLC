@@ -94,13 +94,25 @@
             </tr>
           </table>
 
-          <!--h4 class="cursor">نظرات محصول</h4>
-          <p>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه زمان مورد نیاز
-            شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای
-            موجود طراحی اساسا مورد استفاده قرار گیرد.
-          </p-->
+          <!-- COMMENTS -->
+          <div class="comment-section">
+            <div class="comment-form" onsubmit="addComment(event)">
+              <input
+                type="text"
+                id="usernameInput"
+                placeholder="Your Name"
+                required
+              /> 
+              <textarea
+                id="commentInput"
+                placeholder="Add a comment"
+                required
+              ></textarea>
+              <input type="submit" value="Post Comment" />
+            </div>
+            <ul class="comment-list" id="commentList"></ul>
+          </div>
+          <!-- END COMMENT -->
         </div>
         <div class="divshare-buttons">
           <h4 class="h5 text-center m-1 bchs">اشتراک گذاری صفحه</h4>
@@ -157,6 +169,7 @@
 </main>
 {% block JS %}
     <script src="{% static 'js/product/product_single.js' %}"></script>
+    <script src="{% static 'js/index/comment.js' %}"></script>
     <script src="{% static 'js/product/zoomy.js' %}"></script>
     <script src="{% static 'js/jquery/jquery.magic-tabs.js' %}"></script>
     <script

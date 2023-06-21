@@ -10,6 +10,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.backends import ModelBackend
 from django.http import HttpRequest, JsonResponse
 from django.core.validators import validate_email
+from index.models import Comments, Comments_like
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
@@ -125,5 +126,57 @@ def costomer_detail(request):
                     return JsonResponse({'status':"با تشکر ! اطلاعات آدرس شما ایجاد شد", 'success': True})
         else:
             return JsonResponse({'status':"لطفا فیلد های درخواستی را کامل کرده و مجددا تلاش کنید", 'success': False})
+    else:
+        return JsonResponse({'status':"درخواست نا معتبر", 'success': False})
+
+def add_comment(request):
+    if request.method == 'POST':
+        if request.user.is_authenticates:
+            post = request.POST.get('post')
+            title = request.POST.get('title')
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            body = request.POST.get('body')
+            if title and name and body:
+                if Comments.objects.filter(user=request.user.phoneNumber, post=post).exists():
+                    return JsonResponse({'status':"شما حداکثر نظر خود را ثبت کرده اید", 'success': False})
+                else:
+                    Comments.objects.create(
+                        user = request.user.phoneNumber,
+                        post = post,
+                        title = title,
+                        name = name,
+                        email = email,
+                        body = body,)
+                    return JsonResponse({'status':"با تشکر! نظر شما با موفقیت ثبت شد", 'success': True})
+            else:
+                return JsonResponse({'status':"برای ثبت نظر باید حداقل فیلد های عنوان نظر - نام و نظر را پر کنید", 'success': False})
+        else:
+            return JsonResponse({'status':"برای ثبت نظر ابتدا وارد سایت شوید", 'success': False})
+    else:
+        return JsonResponse({'status':"درخواست نا معتبر", 'success': False})
+
+def like(request):
+    if request.method == 'POST':
+        if request.user.is_authenticates:
+            post = request.POST.get('post')
+            like = request.POST.get('like')
+            diss_like = request.POST.get('diss_like')
+            if Comments_like.objects.filter(user=request.user.phoneNumber, post=post).exists():
+                if like:
+                    Comments_like.likes -= 1
+                    return JsonResponse({'success': True})
+                if dis_like:
+                    Comments_like.dis_like -= 1
+                    return JsonResponse({'success': True})
+            else:
+                if like:
+                    Comments_like.likes += 1
+                    return JsonResponse({'success': True})
+                if  diss_like:
+                    Comments_like.dis_like += 1
+                    return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'status':"ابتدا وارد سایت شوید", 'success': False})
     else:
         return JsonResponse({'status':"درخواست نا معتبر", 'success': False})

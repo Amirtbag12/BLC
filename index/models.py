@@ -62,12 +62,13 @@ class Index(Page):
 
 @register_snippet
 class Comments(models.Model):
-    title = models.CharField(max_length=100)
-    name = models.CharField(max_length=100)
-    love = models.PositiveIntegerField(verbose_name='امتیاز', blank=False, null=False)
-    email = models.EmailField()
-    body = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.CharField(max_length=25, verbose_name='کاربر نظر دهنده',null=True, blank=True)
+    post = models.CharField(max_length=25, verbose_name='پست',null=True, blank=True)
+    title = models.CharField(max_length=100,verbose_name='عنوان نظر',null=True, blank=True)
+    name = models.CharField(max_length=100,verbose_name='نام نظر دهنده',null=True, blank=True)
+    email = models.EmailField(verbose_name='ایمیل نظر دهنده',null=True, blank=True)
+    body = models.TextField(verbose_name='نظر',null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت نظر',null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -75,3 +76,13 @@ class Comments(models.Model):
     class Meta:
         verbose_name = 'بازخورد کاربر'
         verbose_name_plural = 'بازخورد کاربران'
+
+class Comments_like(models.Model):
+    user = models.CharField(max_length=25, verbose_name='کاربر لایک / دیسلایک کننده',null=True, blank=True)
+    post = models.CharField(max_length=25, verbose_name='پست لایک/ دیسلایک شده',null=True, blank=True)
+    like = models.PositiveIntegerField(verbose_name='مجموع لایک پست',null=True, blank=True)
+    dis_like = models.PositiveIntegerField(verbose_name='مجموع دیسلایک پست',null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'لایک و دیسلایک'
+        verbose_name_plural = 'لایک ها و دیسلایک ها'

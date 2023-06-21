@@ -6,11 +6,11 @@ developer: #ABS
 # Import all requirements
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm, ReadOnlyPasswordHashField, AuthenticationForm
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login as DjangoLogin
 from allauth.account.forms import SignupForm , ChangePasswordForm
 from wagtail.users.forms import UserEditForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import UsernameField
 from django.shortcuts import render, redirect
 from .utils import validate_Opassword
@@ -64,6 +64,46 @@ class CustomUserCreationForm(forms.ModelForm):
         user.save()
         return user
 
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = user_accounts
+        fields = ['first_name', 'last_name',]
+
+
+class UserEmailForm(forms.ModelForm):
+    class Meta:
+        model = user_accounts
+        fields = ['first_name', 'last_name','email']
+
+
+class change_pass_users(forms.Form):
+    old_password = forms.CharField(label='رمز عبور قدیمی', widget=forms.PasswordInput)
+    new_password = forms.CharField(label='رمز عبور جدید', widget=forms.PasswordInput)
+    confirm_password = forms.CharField(label='تکرار رمز عبور جدید', widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        old_password = cleaned_data.get('old_password')
+        new_password = cleaned_data.get('new_password')
+
+        if old_password and new_password:
+            if not check_password(old_password, self.user.password):
+                self.add_error('old_password', 'رمز عبور قدیمی اشتباه است.')
+            elif old_password == new_password:
+                self.add_error('new_password', 'رمز عبور جدید نمی‌تواند با رمز عبور قدیمی برابر باشد.')
+
+        return cleaned_data
+
+    def clean_confirm_password(self):
+        new_password = self.cleaned_data.get('new_password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+
+        if new_password and confirm_password and new_password != confirm_password:
+            raise forms.ValidationError('رمز عبور جدید و تکرار آن باید یکسان باشند.')
+
+        return confirm_password
+        
 
 class UserAccountsForm(forms.ModelForm):
     class Meta:

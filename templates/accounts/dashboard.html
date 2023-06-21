@@ -2,6 +2,7 @@
 {% load static %}
 {% block TITLE %}پنل کاربری{% endblock %}
 {% block CONTENT %}
+{% csrf_token %}
 <header class="headerblog">
   <div class="h1divhead">
     <h1 class="blogh1 white-color">پنل کاربری</h1>
@@ -14,9 +15,10 @@
         class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-12 mb-3"
       >
         <div class="dropdown text-center">
-          {% if request.user.frist_name %}
+          {% if request.user.first_name %}
           <span>سلام</span>
-          <strong>{{request.user.frist_name}}</strong>
+          <span class="bi bi-heart-fill text-danger"></span>
+          <strong>{{request.user.first_name}}</strong>
           <span>عزیز</span>
           {% else %}
           <script>
@@ -28,7 +30,6 @@
             });
           </script>
           {% endif %}
-          <span class="bi bi-heart-fill text-danger"></span>
         </div>
         <hr />
         <div class="list-group" id="list-tab" role="tablist">
@@ -78,7 +79,7 @@
             >علاقه مندی ها</a
           >
           <a
-            href="#"
+            href="{% url 'logout' %}"
             class="nav-link link-body-emphasis text-danger list-group-item"
           >
             خروج
@@ -96,31 +97,31 @@
           >
             <div class="row">
               <div class="boxpanel">
-                <a href="" class="link-body-emphasis">
+                <a href="#list-orders" class="link-body-emphasis">
                   <span class="bi bi-cart-check"> </span>
                   <h3 class="h5">سفارش ها</h3>
                 </a>
               </div>
               <div class="boxpanel">
-                <a href="" class="link-body-emphasis">
+                <a href="#list-addresses" class="link-body-emphasis">
                   <span class="bi bi-geo-alt"> </span>
                   <h3 class="h5">آدرس ها</h3>
                 </a>
               </div>
               <div class="boxpanel">
-                <a href="" class="link-body-emphasis">
+                <a href="#list-favorites1" class="link-body-emphasis">
                   <span class="bi bi-heart"> </span>
                   <h3 class="h5">علاقه مندی ها</h3>
                 </a>
               </div>
               <div class="boxpanel">
-                <a href="" class="link-body-emphasis">
+                <a href="/shop" class="link-body-emphasis">
                   <span class="bi bi-basket"> </span>
                   <h3 class="h5">فروشگاه</h3>
                 </a>
               </div>
               <div class="boxpanel">
-                <a href="" class="link-body-emphasis">
+                <a href="/blog" class="link-body-emphasis">
                   <span class="bi bi-journal-bookmark"> </span>
                   <h3 class="h5">وبلاگ</h3>
                 </a>
@@ -187,7 +188,7 @@
             aria-labelledby="list-addresses-list"
           >
             <h4 class="mb-3">آدرس خود را وارد کنید</h4>
-            <form class="needs-validation" novalidate="">
+            <div class="needs-validation" novalidate="">
               <div class="row g-3">
                 <div class="col-sm-6">
                   <label for="firstName" class="form-label">نام</label>
@@ -195,6 +196,7 @@
                     type="text"
                     class="form-control"
                     id="firstName"
+                    placeholder="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}"
                     required
                   />
                   <div div class="invalid-feedback">
@@ -209,6 +211,7 @@
                     type="text"
                     class="form-control"
                     id="lastName"
+                    placeholder="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}"
                     required
                   />
                   <div class="invalid-feedback">
@@ -224,6 +227,7 @@
                       type="text"
                       class="form-control"
                       id="telnum"
+                      placeholder="{{request.user.phoneNumber}}"
                       required
                     />
                     <div class="invalid-feedback">
@@ -237,6 +241,7 @@
                     type="text"
                     class="form-control"
                     id="address"
+                    placeholder="{% for customer in customer_items %}{% if customer.address %}{{customer.address}}{% endif %}{% endfor %}"
                     required
                   />
                   <div class="invalid-feedback">
@@ -251,12 +256,12 @@
                       >(اختياري)</span
                     ></label
                   >
-                  <input type="text" class="form-control" id="address2" />
+                  <input type="text" class="form-control" id="address2" placeholder="{% for customer in customer_items %}{% if customer.pelak %}{{customer.pelak}}{% endif %}{% endfor %}" />
                 </div>
 
                 <div class="col-md-5">
                   <label for="ostan" class="form-label">استان</label>
-                  <input type="text" class="form-control" id="ostan" />
+                  <input type="text" class="form-control" id="ostan" placeholder="{% for customer in customer_items %}{% if customer.ostan %}{{customer.ostan}}{% endif %}{% endfor %}" />
                   <div class="invalid-feedback">يرجى اختيار بلد صحيح.</div>
                 </div>
 
@@ -266,6 +271,7 @@
                     type="text"
                     class="form-control"
                     id="shahr"
+                    placeholder="{% for customer in customer_items %}{% if customer.city %}{{customer.city}}{% endif %}{% endfor %}"
                     required
                   />
                   <div class="invalid-feedback">
@@ -279,16 +285,17 @@
                     type="text"
                     class="form-control"
                     id="zip"
+                    placeholder="{% for customer in customer_items %}{% if customer.zip_zode %}{{customer.zip_zode}}{% endif %}{% endfor %}"
                     required
                   />
                   <div class="invalid-feedback">الرمز البريدي مطلوب.</div>
                 </div>
               </div>
               <br />
-              <button class="btn red-b-color white-color" type="submit">
+              <button class="btn red-b-color white-color" type="submit" onclick="get_address()">
                 بروزرسانی اطلاعات
               </button>
-            </form>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -296,7 +303,7 @@
             role="tabpanel"
             aria-labelledby="list-details-list"
           >
-            <form class="row g-3 needs-validation" novalidate>
+            <div class="row g-3 needs-validation" novalidate>
               <div class="col-md-4">
                 <label for="validationCustom01" class="form-label"
                   >نام
@@ -305,6 +312,7 @@
                   type="text"
                   class="form-control"
                   id="validationCustom01"
+                  placeholder="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}"
                   required
                 />
                 <div class="valid-feedback">Looks good!</div>
@@ -317,6 +325,7 @@
                   type="text"
                   class="form-control"
                   id="validationCustom02"
+                  placeholder="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}"
                   required
                 />
                 <div class="valid-feedback">Looks good!</div>
@@ -329,7 +338,7 @@
                   type="text"
                   class="form-control"
                   id="validationCustom03"
-                  placeholder="09121252336"
+                  placeholder="{{request.user.phoneNumber}}"
                   readonly
                 />
                 <div class="valid-feedback">Looks good!</div>
@@ -344,6 +353,7 @@
                   type="email"
                   class="form-control"
                   id="validationCustom04"
+                  placeholder="{% if request.user.email%}{{request.user.email}}{% endif %}"
                   required
                 />
                 <div class="invalid-feedback">
@@ -391,11 +401,11 @@
                 </div>
               </div>
               <div class="col-12">
-                <button class="btn red-b-color white-color" type="submit">
+                <button class="btn red-b-color white-color" onclick="update_user()">
                   بروزرسانی اطلاعات
                 </button>
               </div>
-            </form>
+            </div>
           </div>
           <div
             class="tab-pane fade"

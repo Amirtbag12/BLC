@@ -6,12 +6,15 @@ Accounts urls configuration
 from django.urls import path
 from allauth.account.views import LogoutView, PasswordSetView, PasswordChangeView, PasswordResetView
 from .views import login_signup, CusLoginView, CusSignupView, dashboardView, update_user
+from .backends import update_user as UPDATE_DETAIL, costomer_detail
 
 urlpatterns = [
     path('', login_signup, name='login_or_signup'),
     path('dashboard', dashboardView, name='dashboard'),
     path('login/', CusLoginView.as_view(), name='login'),
     path('signup/', CusSignupView.as_view(), name='signup'),
+    path('address', costomer_detail, name='address'),
+    path('update_detail', UPDATE_DETAIL, name="update_detail"),
     path('update_user/<int:user_id>/', update_user, name='update_user'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('set_password/', PasswordSetView.as_view(), name='set_password'),

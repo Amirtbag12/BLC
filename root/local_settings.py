@@ -52,7 +52,7 @@ BASE_ACTIVE_SITE = '8004-amirtbag12-blc-omie2tnevib.ws-eu100.gitpod.io'
 SITE_API = 'UNIQUEAPI174/'
 
 # SITE DEBUG
-SITE_DEBIG = False
+SITE_DEBIG = True
 
 
 

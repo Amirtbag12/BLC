@@ -114,9 +114,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.request',
                 'django.template.context_processors.debug',
-                'index.context_processors.comment_items'.
                 'cart.context_processors.favourite_items',
-                'index.context_processors.like_items'.
                 'cart.context_processors.cart_items',
                 'cart.context_processors.comparison_items',
                 'cart.context_processors.cart_total',

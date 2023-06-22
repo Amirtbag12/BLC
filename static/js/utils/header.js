@@ -71,6 +71,7 @@ $(document).ready(function() {
       var startIndex = (page - 1) * perPage;
       var endIndex = startIndex + perPage;
       $.getJSON(`/UNIQUEAPI174/pages/?search=${search_text}&type=product.InventoryItem&search_operator=and`, function(data) {
+        var totalChild = data.meta.total_count;
         var product_item = data.items;
         if (product_item.length > 0) {
           document.title = search_text;

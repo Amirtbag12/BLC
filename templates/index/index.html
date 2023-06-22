@@ -57,28 +57,9 @@
             <div class="row red-b-color text-center">
                 <div class=" col-11">
                     <img src="{% static 'img/img/shegeftititr.png' %}" alt="" width="80%">
-                    <div class="sliderpro">
+                    <div id="PRODUCT" class="sliderpro">
                         <!-- برای محصئلات ذایتامیم -->
-                        <div class="cardpromain m-1">
-                            <img src="{% static 'img/img/blurred.jpg' %}" class="card-img-top" alt="..." />
-                            <div class="card-body">
-                                <h3 class="card-title h4">
-                                    <a href="" class="black-color">مقاله شماره یک</a>
-                                </h3>
-                                <span class="text-decoration-line-through icon2">300.000</span>
-                                <span class="red-color">200.000 <span>تومان</span></span>
-                                <hr />
-                                <div class="tolspro">
-                                    <span class="bi bi-heart"></span>
-                                    <button type="submit" class="btn btn-danger addtocard">
-                                        افزودن به سبد خرید
-                                    </button>
-                                    <span class="bi bi-arrow-left-right"></span>
-                                </div>
-                            </div>
-                        </div>
                         <!-- برای محصئلات ذایتامیم -->
-
                     </div>
                 </div>
             </div>
@@ -106,7 +87,7 @@
                 <div class="col">
                     <div class="cat-main">
 
-                        <a href=""><img src="/img/p1.jpg" alt="">
+                        <a href=""><img src="{% static 'img/img/p1.jpg' %}" alt="">
                             <h3 class="h4 bchs">کوله پشتی لپ تاپ</h3>
                         </a>
                     </div>
@@ -175,22 +156,9 @@
             <div class="row text-center green-b-color">
                 <div class=" col-11 mb-3">
                     <img src="{% static 'img/img/blogtititr.png' %}" alt="" width="80%">
-                    <div class="sliderblog">
+                    <div id="BLOG_CONTENT" class="sliderblog">
                         <!-- برای بلاگ داینامیک -->
-                        <div class="card m-1" style="width: 18rem">
-                            <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" class="card-img-top" alt="..." />
-                            <div class="card-body">
-                                <h3 class="card-title h3">مقاله شماره یک</h3>
-                                <p class="card-text">
-                                    توضیحات کوتاه درباره محتوای مقاله برای انتخاب بهتر کاربران و
-                                    بهبود عملکرد سئو سایت
-                                </p>
-                                <a href="#">مشاهده بیشتر</a>
-                            </div>
-                        </div>
                         <!-- برای بلاگ داینامیک -->
-
-
                     </div>
                 </div>
             </div>
@@ -229,26 +197,8 @@
             <div class="row red-b-color text-center">
                 <div class=" col-11">
                     <img src="{% static 'img/img/protititr.png' %}" alt="" width="80%">
-                    <div class="sliderpro2">
+                    <div id="PRODUCT2CONTENT" class="sliderpro2">
                         <!-- برای محصئلات ذایتامیم -->
-                        <div class="cardpromain m-1">
-                            <img src="{% static 'img/img/blurred.jpg' %}" class="card-img-top" alt="..." />
-                            <div class="card-body">
-                                <h3 class="card-title h4">
-                                    <a href="" class="black-color">مقاله شماره یک</a>
-                                </h3>
-                                <span class="text-decoration-line-through icon2">300.000</span>
-                                <span class="red-color">200.000 <span>تومان</span></span>
-                                <hr />
-                                <div class="tolspro">
-                                    <span class="bi bi-heart"></span>
-                                    <button type="submit" class="btn btn-danger addtocard">
-                                        افزودن به سبد خرید
-                                    </button>
-                                    <span class="bi bi-arrow-left-right"></span>
-                                </div>
-                            </div>
-                        </div>
                         <!-- برای محصئلات ذایتامیم -->
 
                     </div>
@@ -257,7 +207,10 @@
         </section>
     </main>
     {% block JS %}
+    <script src="{% static 'js/index/index.js' %}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{% static 'js/index/main_page.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     {% endblock %}
 {% endblock %}

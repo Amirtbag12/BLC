@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block TITLE %}پشتیبانی آنلاین{% endblock %}
+{% block CONTENT %}
+    <textarea id="support_log" cols="100" rows="20"></textarea><br>
+    <input id="support_message" type="text" size="100"><br>
+    <input id="support_submit" type="button" value="ارسال">
+    {% block JS %}
+    <script src="{% static 'js/support/support.js' %}"></script>
+    {% endblock %}
+{% endblock %}

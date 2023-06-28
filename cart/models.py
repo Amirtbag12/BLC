@@ -88,3 +88,12 @@ class Comparison(models.Model):
     class Meta:
         verbose_name = 'مقایسه محصول'
         verbose_name_plural = 'مقایسات محصولات'
+
+
+class Support(models.Model):
+    support_user = models.CharField(max_length=100, verbose_name='کاربر پشتیبانی گیرنده', null=True, blank=True)
+    support_status = models.CharField(max_length=100, verbose_name='وضعیت پشتیبانی', null=True, blank=True)
+    
+    class Meta:
+        verbose_name = 'پشتیبانی کاربر'
+        verbose_name_plural = 'پشتیبانی کاربران'

@@ -5,7 +5,8 @@ developer : #ABS
 """
 
 # Import all requirements
-from .local_settings import DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API
+from .local_settings import SUPPORT_PAGE, DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API
+from cart.views import CartViewSet, support_index, support_room, support_add
 from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls import handler404, handler500
 from wagtail.admin import urls as wagtailadmin_urls
@@ -13,7 +14,6 @@ from django.views.generic.base import RedirectView
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from wagtail import urls as wagtail_urls
-from cart.views import CartViewSet
 from rest_framework import routers
 from django.contrib import admin
 from django.conf import settings
@@ -23,9 +23,10 @@ import os.path
 
 # NOTE : PLEASE KEEP THIS FILE SAFE !
 urlpatterns = [
+    path("support/<str:room_name>/", support_room, name="Support_room"),
+    path(SUPPORT_PAGE, support_index, name="Support_ADMINISTRATOR"),
     path('api/cart/', CartViewSet.as_view(), name='cart-api'),
-    #path('comparison/', include('cart.comparison_urls')),
-    #path('favourite/', include('cart.favourite_urls')),
+    path('support/add',support_add, name="Support_add"),
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/', include('user_accounts.urls')),
     path('UsersAccounts/', include('allauth.urls')),

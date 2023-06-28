@@ -9,7 +9,7 @@ from .serializers import CartSerializer
 from product.forms import DiscountForm
 from django.contrib import messages
 from rest_framework import generics, filters
-from .models import Cart 
+from .models import Cart, Support
 
 
 class CartViewSet(generics.ListCreateAPIView):
@@ -20,6 +20,36 @@ class CartViewSet(generics.ListCreateAPIView):
     
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     
+
+@csrf_exempt
+def support_index(request):
+    return render(request, 'support/index.html')
+
+@csrf_exempt
+def support_add(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            try:
+                support_user = request.user.phoneNumber
+                support_status = request.POST.get('support_status')
+                if (Support.objects.filter(user=request.user.phoneNumber)):
+                    return JsonResponse({'status':"شما در حال حاظر یک پشتیبانی فعال دارید", 'success': False})
+                else:
+                    Support.objects.create(
+                        support_user = support_user,
+                        support_status = support_status,
+                    )
+                    return JsonResponse({'status':"پشتیبانی با موفقیت ایجاد شد. اکنون به صفحه پشتیبانی منتقل میشوید", 'success': True})
+            except:
+                return JsonResponse({'status':"با عرض پوزش در حال حاظر امکان پشتیبانی آنلاین وجود ندارد کمی بعد مجددا تلاش کنید", 'success': False})
+        else:
+            return JsonResponse({'status':"برای دریافت پشتیبانی ابتدا ثبت نام کنید یا وارد حساب کاربری خود شوید", 'success': False})
+    else:
+        return JsonResponse({'status':"درخواست معتبر نیست", 'success': False})
+
+@login_required
+def support_room(request):
+    return render(request, 'support/room.html')
 
 @login_required
 def cart_view(request):

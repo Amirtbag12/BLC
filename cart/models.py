@@ -91,6 +91,7 @@ class Comparison(models.Model):
 
 
 class Support(models.Model):
+    supporter = models.CharField(max_length=100, verbose_name='اپراتور پشتیبانی', null=True, blank=True)
     support_user = models.CharField(max_length=100, verbose_name='کاربر پشتیبانی گیرنده', null=True, blank=True)
     support_message = models.TextField(verbose_name='پیام پشتیبانی', null=True, blank=True)
     support_status = models.CharField(max_length=100, verbose_name='وضعیت پشتیبانی', null=True, blank=True)

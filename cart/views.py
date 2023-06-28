@@ -1,3 +1,4 @@
+from .serializers import CartSerializer, SupportSerializer
 from django.contrib.auth.decorators import login_required
 from index.extensions.http_service import get_client_ip
 from django.views.generic import ListView, DetailView
@@ -5,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from product.models import InventoryItem, Discount
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, redirect
-from .serializers import CartSerializer
 from product.forms import DiscountForm
 from django.contrib import messages
 from rest_framework import generics, filters
@@ -20,6 +20,14 @@ class CartViewSet(generics.ListCreateAPIView):
     
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     
+
+class SupportViewSet(generics.ListCreateAPIView):
+    queryset = Support.objects.all()
+    serializer_class = SupportSerializer
+    ordering_fields = ['supporter','support_user','support_message','support_status',]
+    search_fields = ['support_user']
+    
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
 
 @csrf_exempt
 def support_index(request):

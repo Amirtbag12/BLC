@@ -38,6 +38,7 @@ class user_accounts(AbstractBaseUser, PermissionsMixin):
     phoneNumber = models.CharField(db_column='phoneNumber', max_length=20, unique=True, verbose_name='شماره تماس')
     is_active = models.BooleanField(db_column='is_active',default=True, verbose_name='وضعیت کاربر')
     is_staff = models.BooleanField(db_column='is_staff',default=False, verbose_name='وضعیت راهبری')
+    is_supporter = models.BooleanField(blank=True, null=True, verbose_name='عضو تیم پشتیبانی',default=False)
     date_joined = forms.DateTimeField(
         label='Date Joined',
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),

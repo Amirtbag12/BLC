@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
   function load_products(){
-      var perPage = 8;
+      var perPage = 10;
       var page = 1;
       var startIndex = (page - 1) * perPage;
       var endIndex = startIndex + perPage;
@@ -21,92 +21,102 @@ $(document).ready(function() {
             var product = productsData
             if (product.PRODUCT_OFFER.length > 0) {
               var postHTML = `
-              <div class="cardpromain m-1">
+              <div class="cardpro border d-inline-block">
               <img src="${product.image.url}" class="card-img-top" alt="${product.image.alt}" />
               <div class="card-body">
-                  <h3 class="card-title h4">
-                      <a href="" class="black-color">${product.title}</a>
-                  </h3>
-                  <span class="text-decoration-line-through icon2">${product.price}</span>
-                  <span class="red-color">${product.PRODUCT_OFFER[0].value}<span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
-                  <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
-                          مشاهده و خرید
-                      </button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','${product.PRODUCT_OFFER[0].value}')"></span>
-                  </div>
+                <h3 class="card-title h4">
+                  <a href="" class="black-color">${product.title}</a>
+                </h3>
+                <span class="text-decoration-line-through icon2"
+                  >${product.PRODUCT_OFFER[0].value}</span
+                >
+                <span class="red-color">${product.price} <span>تومان</span></span>
+                <hr />
+              <div class="tolspro">
+              <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+              <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
+                      مشاهده و خرید
+                  </button></a>
+                  <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
               </div>
-          </div>
-              `;
-              var post2HTML = `
-              <div class="cardpromain m-1">
-              <img src="${product.image.url}" class="card-img-top" alt="${product.image.alt}" />
-              <div class="card-body">
-                  <h3 class="card-title h4">
-                      <a href="" class="black-color">${product.title}</a>
-                  </h3>
-                  <span class="text-decoration-line-through icon2">${product.price}</span>
-                  <span class="red-color">${product.PRODUCT_OFFER[0].value} <span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','${product.PRODUCT_OFFER[0].value}')"></span>
-                      <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
-                          مشاهده و خرید
-                      </button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','${product.PRODUCT_OFFER[0].value}')"></span>
-                  </div>
               </div>
-          </div>
+            </div>
               `;
               $('#PRODUCT').append(postHTML);
-              $('#PRODUCT2CONTENT').append(post2HTML);
             }else{
               var postHTML = `
-              <div class="cardpromain m-1">
+              <div class="cardpro border d-inline-block">
               <img src="${product.image.url}" class="card-img-top" alt="${product.image.alt}" />
               <div class="card-body">
-                  <h3 class="card-title h4">
-                      <a href="" class="black-color">${product.title}</a>
-                  </h3>
-                  <span class="red-color">${product.price}<span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
-                  <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
-                          مشاهده و خرید
-                      </button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
-                  </div>
+                <h3 class="card-title h4">
+                  <a href="" class="black-color">${product.title}</a>
+                </h3>
+                <span class="red-color">${product.price} <span>تومان</span></span>
+                <hr />
+              <div class="tolspro">
+              <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+              <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
+                      مشاهده و خرید
+                  </button></a>
+                  <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
               </div>
-          </div>
-              `;
-              var post2HTML = `
-              <div class="cardpromain m-1">
-              <img src="${product.image.url}" class="card-img-top" alt="${product.image.alt}" />
-              <div class="card-body">
-                  <h3 class="card-title h4">
-                      <a href="" class="black-color">${product.title}</a>
-                  </h3>
-                  <span class="red-color">${product.price} <span>تومان</span></span>
-                  <hr />
-                  <div class="tolspro">
-                  <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}', '${productPageSlug}', '${product.product_title}','${product.image.url}','FV','SV','0')"></span>
-                      <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
-                          مشاهده و خرید
-                      </button></a>
-                      <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
-                  </div>
               </div>
-          </div>
+            </div>
               `;
               $('#PRODUCT').append(postHTML);
-              $('#PRODUCT2CONTENT').append(post2HTML);
             }
           });
   }
     page++;
+});
+}
+function load_products_offer(){
+  var perPage = 10;
+  var page = 1;
+  var startIndex = (page - 1) * perPage;
+  var endIndex = startIndex + perPage;
+  $.getJSON(`/UNIQUEAPI174/pages/?type=product.InventoryItem`, function(data) {
+    var product_item = data.items;
+    var totalChild = data.meta.total_count;
+    totalPages = Math.ceil(product_item.length / perPage);
+    for (var i = startIndex; i < endIndex; i++) {
+      if (i >= product_item.length) {
+        break;
+      }
+      var productPage = product_item[i];
+      var productPageId = productPage.id;
+      var productPageSlug = productPage.meta.slug;
+      var productPostsAPIURL = `/UNIQUEAPI174/pages/${productPageId}`;
+      $.getJSON(productPostsAPIURL, function(productsData) {
+        var product = productsData
+        if (product.PRODUCT_OFFER.length > 0) {
+          var postHTML = `
+          <div class="cardpro border d-inline-block">
+          <img src="${product.image.url}" class="card-img-top" alt="${product.image.alt}" />
+          <div class="card-body">
+            <h3 class="card-title h4">
+              <a href="" class="black-color">${product.title}</a>
+            </h3>
+            <span class="text-decoration-line-through icon2"
+              >${product.PRODUCT_OFFER[0].value}</span
+            >
+            <span class="red-color">${product.price} <span>تومان</span></span>
+            <hr />
+          <div class="tolspro">
+          <span class="bi bi-heart black-color"onclick="add_favourite('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','0')"></span>
+          <a href="${product.meta.html_url}"><button type="submit" class="btn btn-danger addtocard">
+                  مشاهده و خرید
+              </button></a>
+              <span class="bi bi-arrow-left-right" onclick="add_comparison('${product.id}','${productPageSlug}','${product.product_title}','${product.image.url}','FV','SV','1','0')"></span>
+          </div>
+          </div>
+        </div>
+          `;
+          $('#PRODUCT_OFFER').append(postHTML);
+        }
+      });
+}
+page++;
 });
 }
   function load_blog(){
@@ -146,6 +156,7 @@ $(document).ready(function() {
 //Doc Ready
 load_products();
 load_blog();
+load_products_offer();
 });
 function add_favourite(product_id, product_slug, product_title, product_image, product_quantity, product_color, product_add_cart_date){
   // Data to be sent with the POST request

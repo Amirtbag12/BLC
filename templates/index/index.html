@@ -54,16 +54,70 @@
             </div>
         </header>
         <section class="container-fluid mt-3">
-            <div class="row red-b-color text-center">
-                <div class=" col-11">
-                    <img src="{% static 'img/img/shegeftititr.png' %}" alt="" width="80%">
-                    <div id="PRODUCT" class="sliderpro">
-                        <!-- برای محصئلات ذایتامیم -->
-                        <!-- برای محصئلات ذایتامیم -->
-                    </div>
-                </div>
+            <!-- شروع دکمه ها -->
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button
+                class="nav-link active red-color red-color-h"
+                id="nav-home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-home"
+                type="button"
+                role="tab"
+                aria-controls="nav-home"
+                aria-selected="true"
+              >
+                تخفیف شگفت انگیز
+              </button>
+              <button
+                class="nav-link red-color red-color-h"
+                id="nav-contact-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-contact"
+                type="button"
+                role="tab"
+                aria-controls="nav-contact"
+                aria-selected="false"
+              >
+                محصولات جدید
+              </button>
             </div>
-        </section>
+            <!-- پایان دکمه ها -->
+            <!-- شروع محتوای هر دکمه -->
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="nav-home"
+                role="tabpanel"
+                aria-labelledby="nav-home-tab"
+                tabindex="0"
+              >
+                <div class="container-fluid">
+                    <div>
+                  <div class="row text-center" id="PRODUCT_OFFER">
+                </div>
+              </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div
+                class="tab-pane fade"
+                id="nav-contact"
+                role="tabpanel"
+                aria-labelledby="nav-contact-tab"
+                tabindex="0"
+              >
+                <div class="container-fluid">
+                   <div >
+                  <div class="row text-center" id="PRODUCT">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- پایان محتوای هر دکمه -->
+          </section>
+          <!-- لطفا این سکشن به جای سکشن دوم گذاشته شود -->
         <section class="container-fluid mt-5">
             <div class="text-center img-titr"> <img src="{% static 'img/img/cattititr.png' %}" alt="">
             </div>
@@ -153,17 +207,6 @@
 
         </section>
         <section class="container-fluid mt-3">
-            <div class="row text-center green-b-color">
-                <div class=" col-11 mb-3">
-                    <img src="{% static 'img/img/blogtititr.png' %}" alt="" width="80%">
-                    <div id="BLOG_CONTENT" class="sliderblog">
-                        <!-- برای بلاگ داینامیک -->
-                        <!-- برای بلاگ داینامیک -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="container-fluid mt-3">
             <div class="row">
                 <div class="col-6 col-sm-4 col-md-4 col-lg-4  p-2">
                     <div class="baner-main"> <img src="{% static 'img/img/shopping-header-e1645291931520.jpg' %}" alt="">
@@ -192,19 +235,7 @@
 
             </div>
         </section>
-        <section class="container-fluid mt-3">
 
-            <div class="row red-b-color text-center">
-                <div class=" col-11">
-                    <img src="{% static 'img/img/protititr.png' %}" alt="" width="80%">
-                    <div id="PRODUCT2CONTENT" class="sliderpro2">
-                        <!-- برای محصئلات ذایتامیم -->
-                        <!-- برای محصئلات ذایتامیم -->
-
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
     {% block JS %}
     <script src="{% static 'js/index/index.js' %}"></script>

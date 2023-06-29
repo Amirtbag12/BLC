@@ -4,6 +4,9 @@ developer : #ABS
 """
 from django.shortcuts import render, redirect
 
+# for daily visits
+def daily_visit_view(request):
+    return render(request, 'utils/daily_visit/daily_visit.html', name="daily_visit")
 
 # 404 Error view (Page not found)
 def page_not_found_error(request, exception):

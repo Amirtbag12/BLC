@@ -116,6 +116,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.request',
                 'django.template.context_processors.debug',
+                'index.context_processors.daily_visit',
                 'cart.context_processors.favourite_items',
                 'cart.context_processors.cart_items',
                 'cart.context_processors.comparison_items',
@@ -123,7 +124,6 @@ TEMPLATES = [
                 'cart.context_processors.support_requests',
                 'user_accounts.context_processors.user_items',
                 'user_accounts.context_processors.customer_items',
-
             ],
         },
     },

@@ -12,4 +12,4 @@ def register_daily_visit():
 
 @hooks.register('register_admin_menu_item')
 def register_daily_visit_item():
-    return MenuItem('پشتیبانی بر خط', reverse('daily_visits'), icon_name='tablet-alt')
+    return MenuItem('آمار', reverse('daily_visits'), icon_name='tablet-alt')

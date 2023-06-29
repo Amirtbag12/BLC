@@ -1,72 +1,113 @@
-document.querySelector('#support_message').focus();
-document.querySelector('#support_message').onkeyup = function(e) {
-    if (e.keyCode === 13) {  // enter, return
-        document.querySelector('#support_submit').click();
-    }
-};
-function load_message(){
-  
-}
-document.querySelector('#support_submit').onclick = function(e) {
-    const messageInputDom = document.querySelector('#support_message');
-    const message = messageInputDom.value;
-    if(message){
-        let token = $('input[name=csrfmiddlewaretoken]').val();
-        let search_user = $('input[name=Supported_user]').val();
-        let support_status = "active";
-        $.ajax({
-          url: `/api/support/?search=${search_user}`,
-          type: 'GET',
-          dataType: 'json',
-          success: function(response) {
-            // Handle the response data here
-            var results = response.results;
-            for (var i = 0; i < results.length; i++) {
-              var supporter = results[i].supporter;
-              var supportUser = results[i].support_user;
-              let data = {
-                'supporter': supporter,
-                'supported_user' : supportUser,
-                'support_message': message,
-                'support_status':support_status,
-                csrfmiddlewaretoken: token,
-              }
-              $.ajax({
-                url: '/support/message',
-                type: 'POST',
-                data: data,
-                success: function(response) {
-                  if (response.success === false) {
-                    Swal.fire({
-                      icon: "error",
-                      title: response.status,
-                      showConfirmButton: false,
-                      timer: 3000,
-                    });
-                  } else {
-                      var message_recive = response.status;
-                      $("#support_log").prepend(`<h2> ${message_recive} </h2>`);
-                  }
-                },
-                error: function(xhr, status, error) {
-                  Swal.fire({
-                    icon: "error",
-                    title: status,
-                    showConfirmButton: false,
-                    timer: 3000,
-                  });
-                }
-              });
-            }
-          },
-        });
-    }else{
-        Swal.fire({
+const messageInputDom = document.querySelector('#support_message');
+const submitButtonDom = document.querySelector('#support_submit');
+const token = $('input[name=csrfmiddlewaretoken]').val();
+
+// Focus on the message input field when the page loads
+messageInputDom.focus();
+
+// Handle enter key press on the message input field
+messageInputDom.addEventListener('keyup', function(e) {
+  if (e.keyCode === 13) {  // Enter key pressed
+    submitButtonDom.click();
+  }
+});
+
+// Handle submit button click
+submitButtonDom.addEventListener('click', function(e) {
+  const message = messageInputDom.value;
+  if (message) {
+    const support_status = "active";
+    const data = {
+      'support_message': message,
+      'support_status': support_status,
+      'csrfmiddlewaretoken': token,
+    };
+    $.ajax({
+      url: '/support/post_message',
+      type: 'POST',
+      data: data,
+      success: function(response) {
+        if (response.success === false) {
+          Swal.fire({
             icon: "error",
-            title: "پیام پشتیبانی نمیتواند خالی باشد",
+            title: response.status,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 3000,
           });
+        } else {
+          // Handle success case if needed
+        }
+      },
+      error: function(xhr, status, error) {
+        Swal.fire({
+          icon: "error",
+          title: status,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    });
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "پیام پشتیبانی نمیتواند خالی باشد",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+  messageInputDom.value = '';
+});
+
+// Function to poll for new messages
+function pollMessages(timestamp) {
+  $.ajax({
+    url: '/support/get_message',
+    data: { 'timestamp': timestamp },
+    success: function(data) {
+      const messages = data.messages;
+      for (const message of messages) {
+        $("#support_log").prepend(`<h2>${message.message}</h2>`);
+      }
+      if (messages.length > 0) {
+        const lastTimestamp = messages[messages.length - 1].timestamp;
+        pollMessages(lastTimestamp);
+      } else {
+        setTimeout(function() {
+          pollMessages(timestamp);
+        }, 5000);
+      }
+    },
+    error: function(xhr, status, error) {
+      setTimeout(function() {
+        pollMessages(timestamp);
+      }, 5000);
+    },
+    timeout: 30000,
+    dataType: 'json'
+  });
+}
+
+// Initial function to fetch latest messages and start long polling
+function fetchLatestMessages() {
+  let search_user = $('input[name=Supported_user]').val();
+  $.ajax({
+    url: `/api/support/?search=${search_user}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      // Handle the response data here
+      var results = response.results;
+      if (results.length > 0) {
+        let support_timestamp = results[results.length - 1].timestamp;
+        pollMessages(support_timestamp);
+      } else {
+        setTimeout(fetchLatestMessages, 5000);
+      }
+    },
+    error: function(xhr, status, error) {
+      setTimeout(fetchLatestMessages, 5000);
     }
-    messageInputDom.value = '';
-};
+  });
+}
+
+fetchLatestMessages();

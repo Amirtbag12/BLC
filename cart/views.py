@@ -24,7 +24,7 @@ class CartViewSet(generics.ListCreateAPIView):
 class SupportViewSet(generics.ListCreateAPIView):
     queryset = Support.objects.all()
     serializer_class = SupportSerializer
-    ordering_fields = ['supporter','support_user','support_message','support_status',]
+    ordering_fields = ['support_user','message','support_status','timestamp',]
     search_fields = ['support_user']
     
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]

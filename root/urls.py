@@ -10,7 +10,7 @@ from .local_settings import SUPPORT_PAGE, DEVELOPERS_PANEL, ADMINS_PANEL, SITE_A
 from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls import handler404, handler500
 from wagtail.admin import urls as wagtailadmin_urls
-from cart.support import message as support_message
+from cart.support import post_message, get_message
 from django.views.generic.base import RedirectView
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
@@ -25,8 +25,9 @@ import os.path
 # NOTE : PLEASE KEEP THIS FILE SAFE !
 urlpatterns = [
     path('api/support/', SupportViewSet.as_view(), name='support-api'),
-    path('support/message', support_message, name='support_message'),
+    path('support/post_message', post_message, name='post_message'),
     path(SUPPORT_PAGE, support_index, name="Support_ADMINISTRATOR"),
+    path('support/get_message', get_message, name='get_message'),
     path("support/<room>/", support_room, name="Support_room"),
     path('api/cart/', CartViewSet.as_view(), name='cart-api'),
     path('support/add',support_add, name="Support_add"),

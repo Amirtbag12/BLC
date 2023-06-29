@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'modelcluster',
     'jalali_date',
+    'user_visit',
     'taggit',
 
     # Internal apps
@@ -93,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'user_visit.middleware.UserVisitMiddleware',
 
     # Wagtail MIDDLEWARE
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',

@@ -15,7 +15,7 @@ document.querySelector('#support_submit').onclick = function(e) {
         let search_user = $('input[name=Supported_user]').val();
         let support_status = "active";
         $.ajax({
-          url: `http://mysite.com/api/support/?search=${search_user}`,
+          url: `/api/support/?search=${search_user}`,
           type: 'GET',
           dataType: 'json',
           success: function(response) {

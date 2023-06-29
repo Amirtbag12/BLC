@@ -12,7 +12,7 @@ def message(request):
                 try:
                     supporter = request.POST.get('supporter')
                     supported_user = request.POST.get('supported_user')
-                    support_message = request.POST.get('sopport_message')
+                    support_message = request.POST.get('support_message')
                     if(Support.objects.filter(supporter=supporter, support_user=supported_user, supporter_message0__isnull=False).exists()):
                         if(Support.objects.filter(supporter=supporter, support_user=supported_user, supporter_message1__isnull=False).exists()):
                             if(Support.objects.filter(supporter=supporter, support_user=supported_user, supporter_message2__isnull=False).exists()):
@@ -127,7 +127,7 @@ def message(request):
                 try:
                     supporter = request.POST.get('supporter')
                     supported_user = request.POST.get('supported_user')
-                    support_message = request.POST.get('sopport_message')
+                    support_message = request.POST.get('support_message')
                     support_status = request.POST.get('support_status')
                     if support_status == 'active':
                         if(Support.objects.filter(support_user=supported_user, user_message1__isnull=False).exists()):
@@ -171,6 +171,7 @@ def message(request):
                                                                                                         user_message18 = None,
                                                                                                         user_message19 = None,
                                                                                                     )
+                                                                                                    return JsonResponse({'status':support_message, 'success': True})
                                                                                                 else:
                                                                                                     Support.objects.filter(support_user=supported_user).update(user_message19=support_message)
                                                                                                     return JsonResponse({'status':support_message, 'success': True})

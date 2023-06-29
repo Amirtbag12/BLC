@@ -1,5 +1,5 @@
 {% extends "wagtailadmin/base.html" %}
-{% block titletag %} آمار روزانه {% endblock %}
+{% block titletag %} بازدید هفته جاری {% endblock %}
 {% block extra_css %}
     {{ block.super }}
     <style>table {
@@ -31,7 +31,7 @@
       }</style>
 {% endblock %}
 {% block content %}
-{% include "wagtailadmin/shared/header.html" with title="آمار روزانه" icon="view" %}
+{% include "wagtailadmin/shared/header.html" with title="آمار بازدید هفته جاری" icon="calendar-check" %}
 <table>
     <thead>
       <tr>

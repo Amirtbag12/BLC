@@ -19,7 +19,7 @@ def register_daily_visit_item():
         MenuItem('بازدید کلی', reverse('visits'), icon_name='clipboard-list'),
         MenuItem('بازدید ماه جاری', reverse('mounth_visits'), icon_name='calendar-alt'),
         MenuItem('بازدید هفته جاری', reverse('week_visits'), icon_name='calendar-check'),
-        MenuItem('بازدید امروز', reverse('daily_visits'), icon_name='group'),
+        MenuItem('بازدید امروز', reverse('daily_visits'), icon_name='view'),
     ])
 
     return SubmenuMenuItem('آمار سایت', submenu, icon_name='pick')

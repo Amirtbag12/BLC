@@ -149,45 +149,85 @@ def message(request):
                                                                                         if(Support.objects.filter(support_user=supported_user, user_message17__isnull=False).exists()):
                                                                                             if(Support.objects.filter(support_user=supported_user, user_message18__isnull=False).exists()):
                                                                                                 if(Support.objects.filter(support_user=supported_user, user_message19__isnull=False).exists()):
-                                                                                                    #clear
+                                                                                                    Support.objects.filter(support_user=supported_user).update(
+                                                                                                        user_message0 = support_message,
+                                                                                                        user_message1 = None,
+                                                                                                        user_message2 = None,
+                                                                                                        user_message3 = None,
+                                                                                                        user_message4 = None,
+                                                                                                        user_message5 = None,
+                                                                                                        user_message6 = None,
+                                                                                                        user_message7 = None,
+                                                                                                        user_message8 = None,
+                                                                                                        user_message9 = None,
+                                                                                                        user_message10 = None,
+                                                                                                        user_message11 = None,
+                                                                                                        user_message12 = None,
+                                                                                                        user_message13 = None,
+                                                                                                        user_message14 = None,
+                                                                                                        user_message15 = None,
+                                                                                                        user_message16 = None,
+                                                                                                        user_message17 = None,
+                                                                                                        user_message18 = None,
+                                                                                                        user_message19 = None,
+                                                                                                    )
                                                                                                 else:
-                                                                                                    # user dont have message 20
+                                                                                                    Support.objects.filter(support_user=supported_user).update(user_message19=support_message)
+                                                                                                    return JsonResponse({'status':support_message, 'success': True})
                                                                                             else:
-                                                                                                # user dont have message 19
+                                                                                                Support.objects.filter(support_user=supported_user).update(user_message18=support_message)
+                                                                                                return JsonResponse({'status':support_message, 'success': True})
                                                                                         else:
-                                                                                            # user dont have message 18
+                                                                                            Support.objects.filter(support_user=supported_user).update(user_message17=support_message)
+                                                                                            return JsonResponse({'status':support_message, 'success': True})
                                                                                     else:
-                                                                                        # user dont have message 17
+                                                                                        Support.objects.filter(support_user=supported_user).update(user_message16=support_message)
+                                                                                        return JsonResponse({'status':support_message, 'success': True})
                                                                                 else:
-                                                                                    # user dont have message 16
+                                                                                    Support.objects.filter(support_user=supported_user).update(user_message15=support_message)
+                                                                                    return JsonResponse({'status':support_message, 'success': True})
                                                                             else:
-                                                                                # user dont have message 15
+                                                                                Support.objects.filter(support_user=supported_user).update(user_message14=support_message)
+                                                                                return JsonResponse({'status':support_message, 'success': True})
                                                                         else:
-                                                                            # user dont have message 14
+                                                                            Support.objects.filter(support_user=supported_user).update(user_message13=support_message)
+                                                                            return JsonResponse({'status':support_message, 'success': True})
                                                                     else:
-                                                                        # user dont have message 13
+                                                                        Support.objects.filter(support_user=supported_user).update(user_message12=support_message)
+                                                                        return JsonResponse({'status':support_message, 'success': True})
                                                                 else:
-                                                                    # user dont have message 12
+                                                                    Support.objects.filter(support_user=supported_user).update(user_message11=support_message)
+                                                                    return JsonResponse({'status':support_message, 'success': True})
                                                             else:
-                                                                # user dont have message 11
+                                                                Support.objects.filter(support_user=supported_user).update(user_message10=support_message)
+                                                                return JsonResponse({'status':support_message, 'success': True})
                                                         else:
-                                                            # user dont have message 10
+                                                            Support.objects.filter(support_user=supported_user).update(user_message9=support_message)
+                                                            return JsonResponse({'status':support_message, 'success': True})
                                                     else:
-                                                        # user dont have message 9
+                                                        Support.objects.filter(support_user=supported_user).update(user_message8=support_message)
+                                                        return JsonResponse({'status':support_message, 'success': True})
                                                 else:
-                                                    # user dont have message 8
+                                                    Support.objects.filter(support_user=supported_user).update(user_message7=support_message)
+                                                    return JsonResponse({'status':support_message, 'success': True})
                                             else:
-                                                # user dont have message 7
+                                                Support.objects.filter(support_user=supported_user).update(user_message6=support_message)
+                                                return JsonResponse({'status':support_message, 'success': True})
                                         else:
-                                            # user dont have message 6
+                                            Support.objects.filter(support_user=supported_user).update(user_message5=support_message)
+                                            return JsonResponse({'status':support_message, 'success': True})
                                     else:
-                                        # user dont have message 5
+                                        Support.objects.filter(support_user=supported_user).update(user_message4=support_message)
+                                        return JsonResponse({'status':support_message, 'success': True})
                                 else:
-                                    # user dont have message 4
+                                    Support.objects.filter(support_user=supported_user).update(user_message3=support_message)
+                                    return JsonResponse({'status':support_message, 'success': True})
                             else:
-                                # user dont have message 3
+                                Support.objects.filter(support_user=supported_user).update(user_message2=support_message)
+                                return JsonResponse({'status':support_message, 'success': True})
                         else:
-                            # user dont have message 2
+                            Support.objects.filter(support_user=supported_user).update(user_message1=support_message)
+                            return JsonResponse({'status':support_message, 'success': True})
                     else:
                         #Deactive
                 except:

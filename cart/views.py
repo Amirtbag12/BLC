@@ -46,6 +46,7 @@ def support_add(request):
                     Support.objects.create(
                         support_user = support_user,
                         support_status = support_status,
+                        user_message0 = 'welcome',
                     )
                     return JsonResponse({'status':"پشتیبانی با موفقیت ایجاد شد. اکنون به صفحه پشتیبانی منتقل میشوید", 'success': True})
             except:

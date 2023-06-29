@@ -123,10 +123,73 @@ def message(request):
                         return JsonResponse({'status':"پشتیبانی کاربر توسط اپراتور پشتیبان دیگری رزرو شده", 'success': False})
                 except:
                     return JsonResponse({'status':"مشکل غیر منتظره ای رخ داده - پشتیبان گرامی لطفا با توسعه دهنده تماس حاصل فرمایید", 'success': False})
-            else:
-                # if user not sopporter:
+            else: # if user not sopporter:
                 try:
-                    pass
+                    supporter = request.POST.get('supporter')
+                    supported_user = request.POST.get('supported_user')
+                    support_message = request.POST.get('sopport_message')
+                    support_status = request.POST.get('support_status')
+                    if support_status == 'active':
+                        if(Support.objects.filter(support_user=supported_user, user_message1__isnull=False).exists()):
+                            if(Support.objects.filter(support_user=supported_user, user_message2__isnull=False).exists()):
+                                if(Support.objects.filter(support_user=supported_user, user_message3__isnull=False).exists()):
+                                    if(Support.objects.filter(support_user=supported_user, user_message4__isnull=False).exists()):
+                                        if(Support.objects.filter(support_user=supported_user, user_message5__isnull=False).exists()):
+                                            if(Support.objects.filter(support_user=supported_user, user_message6__isnull=False).exists()):
+                                                if(Support.objects.filter(support_user=supported_user, user_message7__isnull=False).exists()):
+                                                    if(Support.objects.filter(support_user=supported_user, user_message8__isnull=False).exists()):
+                                                        if(Support.objects.filter(support_user=supported_user, user_message9__isnull=False).exists()):
+                                                            if(Support.objects.filter(support_user=supported_user, user_message10__isnull=False).exists()):
+                                                                if(Support.objects.filter(support_user=supported_user, user_message11__isnull=False).exists()):
+                                                                    if(Support.objects.filter(support_user=supported_user, user_message12__isnull=False).exists()):
+                                                                        if(Support.objects.filter(support_user=supported_user, user_message13__isnull=False).exists()):
+                                                                            if(Support.objects.filter(support_user=supported_user, user_message14__isnull=False).exists()):
+                                                                                if(Support.objects.filter(support_user=supported_user, user_message15__isnull=False).exists()):
+                                                                                    if(Support.objects.filter(support_user=supported_user, user_message16__isnull=False).exists()):
+                                                                                        if(Support.objects.filter(support_user=supported_user, user_message17__isnull=False).exists()):
+                                                                                            if(Support.objects.filter(support_user=supported_user, user_message18__isnull=False).exists()):
+                                                                                                if(Support.objects.filter(support_user=supported_user, user_message19__isnull=False).exists()):
+                                                                                                    #clear
+                                                                                                else:
+                                                                                                    # user dont have message 20
+                                                                                            else:
+                                                                                                # user dont have message 19
+                                                                                        else:
+                                                                                            # user dont have message 18
+                                                                                    else:
+                                                                                        # user dont have message 17
+                                                                                else:
+                                                                                    # user dont have message 16
+                                                                            else:
+                                                                                # user dont have message 15
+                                                                        else:
+                                                                            # user dont have message 14
+                                                                    else:
+                                                                        # user dont have message 13
+                                                                else:
+                                                                    # user dont have message 12
+                                                            else:
+                                                                # user dont have message 11
+                                                        else:
+                                                            # user dont have message 10
+                                                    else:
+                                                        # user dont have message 9
+                                                else:
+                                                    # user dont have message 8
+                                            else:
+                                                # user dont have message 7
+                                        else:
+                                            # user dont have message 6
+                                    else:
+                                        # user dont have message 5
+                                else:
+                                    # user dont have message 4
+                            else:
+                                # user dont have message 3
+                        else:
+                            # user dont have message 2
+                    else:
+                        #Deactive
                 except:
                     return JsonResponse({'status':"مشکل غیر منتظره ای رخ داده - پشتیبان گرامی لطفا با توسعه دهنده تماس حاصل فرمایید", 'success': False})
         else:

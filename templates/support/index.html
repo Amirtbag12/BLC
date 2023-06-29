@@ -74,6 +74,10 @@
      <button class="btn btn-outline-danger" onclick="get_support('{{support.support_request}}');">پشتیبانی کاربر</button>
       {% endif %}
 </div>
+{% empty %}
+<div class="row" style="text-align: center;">
+  <label>در حال حاظر درخواستی برای پشتیبانی وجود ندارد</label>
+</div>
 {% endfor %}
 <script>
 function get_support(room){

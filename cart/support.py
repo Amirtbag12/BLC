@@ -228,8 +228,9 @@ def message(request):
                         else:
                             Support.objects.filter(support_user=supported_user).update(user_message1=support_message)
                             return JsonResponse({'status':support_message, 'success': True})
-                    else:
-                        #Deactive
+                    else: # User close
+                        Support.objects.filter(support_user=supported_user).delete()
+                        return JsonResponse({'status':support_message, 'success': True})
                 except:
                     return JsonResponse({'status':"مشکل غیر منتظره ای رخ داده - پشتیبان گرامی لطفا با توسعه دهنده تماس حاصل فرمایید", 'success': False})
         else:

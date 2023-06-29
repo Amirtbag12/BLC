@@ -16,7 +16,7 @@ admin.site.register(Comparison, ComparisonAdmin)
 
 
 class SupportAdmin(admin.ModelAdmin):
-    list_display = ('supporter','support_user','support_message','support_status',)
+    list_display = ('supporter','support_user','support_status',)
     search_fields = ('supporter','support_user',)
 
 admin.site.register(Support, SupportAdmin)

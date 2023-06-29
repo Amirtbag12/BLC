@@ -35,8 +35,7 @@
 <table>
     <thead>
       <tr>
-        <th>شناسه</th>
-        <th>کاربر</th>
+        <th>ردیف</th>
         <th>آدرس IP</th>
         <th>زمان بازدید</th>
         <th>سیستم عامل/مرورگر</th>
@@ -47,7 +46,6 @@
         {% for visit in daily_visit %}
         <tr>
             <th>{{visit.id}}</th>
-            <td>{{visit.user}}</td>
             <td>{{visit.remote_addr}}</td>
             <td>{{visit.timestamp}}</td>
             <td>{{visit.user_agent}}</td>

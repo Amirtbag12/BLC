@@ -13,4 +13,4 @@ def register_support_index():
 
 @hooks.register('register_admin_menu_item')
 def register_support_index_item():
-    return MenuItem('پشتیبانی بر خط', reverse('support_index'), icon_name='tablet-alt')
+    return MenuItem('پشتیبانی بر خط', reverse('support_index'), icon_name='mobile-alt')

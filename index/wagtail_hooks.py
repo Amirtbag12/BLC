@@ -16,10 +16,10 @@ def register_daily_visit():
 @hooks.register('register_admin_menu_item')
 def register_daily_visit_item():
     submenu = Menu(items=[
-        MenuItem('بازدید کلی', reverse('visits'), icon_name='date'),
-        MenuItem('بازدید ماه جاری', reverse('mounth_visits'), icon_name='date'),
-        MenuItem('بازدید هفته جاری', reverse('week_visits'), icon_name='date'),
-        MenuItem('بازدید امروز', reverse('daily_visits'), icon_name='date'),
+        MenuItem('بازدید کلی', reverse('visits'), icon_name='clipboard-list'),
+        MenuItem('بازدید ماه جاری', reverse('mounth_visits'), icon_name='calendar-alt'),
+        MenuItem('بازدید هفته جاری', reverse('week_visits'), icon_name='calendar-check'),
+        MenuItem('بازدید امروز', reverse('daily_visits'), icon_name='group'),
     ])
 
-    return SubmenuMenuItem('آمار سایت', submenu, icon_name='date')
+    return SubmenuMenuItem('آمار سایت', submenu, icon_name='pick')

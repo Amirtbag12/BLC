@@ -1,54 +1,61 @@
-
-///////////////
-setInterval(function() {
-    // کدی برای بارگیری دیتای تازه و بروزرسانی صفحه
-  }, 4000);
-
 document.querySelector('#support_message').focus();
 document.querySelector('#support_message').onkeyup = function(e) {
     if (e.keyCode === 13) {  // enter, return
         document.querySelector('#support_submit').click();
     }
 };
-
 document.querySelector('#support_submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#support_message');
     const message = messageInputDom.value;
     if(message){
         let token = $('input[name=csrfmiddlewaretoken]').val();
+        let search_user = $('input[name=Supported_user]').val();
         let support_status = "active";
-        let data = {
-          'support_message': message,
-          'support_status':support_status,
-          csrfmiddlewaretoken: token,
-        }
         $.ajax({
-          url: '/support/message',
-          type: 'POST',
-          data: data,
+          url: `http://mysite.com/api/support/?search=${search_user}`,
+          type: 'GET',
+          dataType: 'json',
           success: function(response) {
-            if (response.success === false) {
-              Swal.fire({
-                icon: "error",
-                title: response.status,
-                showConfirmButton: false,
-                timer: 3000,
+            // Handle the response data here
+            var results = response.results;
+            for (var i = 0; i < results.length; i++) {
+              var supporter = results[i].supporter;
+              var supportUser = results[i].support_user;
+              let data = {
+                'supporter': supporter,
+                'supported_user' : supportUser,
+                'support_message': message,
+                'support_status':support_status,
+                csrfmiddlewaretoken: token,
+              }
+              $.ajax({
+                url: '/support/message',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                  if (response.success === false) {
+                    Swal.fire({
+                      icon: "error",
+                      title: response.status,
+                      showConfirmButton: false,
+                      timer: 3000,
+                    });
+                  } else {
+                      var message_recive = response.status;
+                      $("#support_log").val(message_recive);
+                  }
+                },
+                error: function(xhr, status, error) {
+                  Swal.fire({
+                    icon: "error",
+                    title: status,
+                    showConfirmButton: false,
+                    timer: 3000,
+                  });
+                }
               });
-            } else {
-                let message_text = response.status;
-                var currentText = $("#support_log").val();
-                var newText = currentText + "\n" + message_text;
-                $("#support_log").val(newText);
             }
           },
-          error: function(xhr, status, error) {
-            Swal.fire({
-              icon: "error",
-              title: status,
-              showConfirmButton: false,
-              timer: 3000,
-            });
-          }
         });
     }else{
         Swal.fire({

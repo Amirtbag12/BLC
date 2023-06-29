@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cart, Comparison
+from .models import Cart, Comparison, Support
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'product_title', 'quantity', 'price', 'image', 'color')
@@ -13,3 +13,10 @@ class ComparisonAdmin(admin.ModelAdmin):
     search_fields = ('user',)
 
 admin.site.register(Comparison, ComparisonAdmin)
+
+
+class SupportAdmin(admin.ModelAdmin):
+    list_display = ('supporter','support_user','support_message','support_status',)
+    search_fields = ('supporter','support_user',)
+
+admin.site.register(Support, SupportAdmin)

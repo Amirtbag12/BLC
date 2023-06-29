@@ -25,7 +25,7 @@ class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None,has_new_password = None, WPOPass = None, **kwargs) -> Optional[get_user_model()]:
         UserModel = get_user_model()
         try:
-            user = UserModel.objects.get(Q(username=username) | Q(email=username))| Q(phoneNember=username)
+            user = UserModel.objects.get(Q(username=username) | Q(email=username) | Q(phoneNumber=username))
         except UserModel.DoesNotExist:
             return None
         else:

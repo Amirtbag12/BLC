@@ -10,8 +10,18 @@ def message(request):
         if request.user.is_authenticated:
             if(request.user.is_supporter):
                 try:
+                    supporter = request.POST.get('supporter')
+                    supported_user = request.POST.get('supported_user')
                     support_message = request.POST.get('sopport_message')
-
+                    if(Support.objects.filter(supporter=supporter, support_user=supported_user, support_message__isnull=False).exists()):
+                        pass
+                    elif(Support.objects.filter(support_user=supported_user)):
+                        Support.objects.filter(support_user=supported_user).update(
+                            supporter = supporter,
+                            support_message = support_message,
+                        )
+                    else:
+                        return JsonResponse({'status':"پشتیبانی کاربر توسط اپراتور پشتیبان دیگری رزرو شده", 'success': False})
                 except:
                     return JsonResponse({'status':"مشکل غیر منتظره ای رخ داده - پشتیبان گرامی لطفا با توسعه دهنده تماس حاصل فرمایید", 'success': False})
             else:

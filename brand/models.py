@@ -1,4 +1,5 @@
 from wagtail.contrib.routable_page.models import RoutablePageMixin
+from wagtail.images.api.fields import ImageRenditionField
 from user_accounts.models import user_accounts as User
 from wagtail.snippets.models import register_snippet
 from django.db.models import PROTECT, SET_NULL
@@ -61,6 +62,13 @@ class BrandIndex(Page, RoutablePageMixin):
 class BrandPage(Page, RoutablePageMixin):
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL,)
     keywords = models.CharField(max_length=300, verbose_name='کلید واژه برند')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name='تصویر شاخص برند',
+        help_text='تصویر شاخص برند را اضافه کنید',
+    )
     description = models.CharField(max_length=300, verbose_name='توضیحات کامل برند')
 
     subpage_types = []
@@ -70,10 +78,12 @@ class BrandPage(Page, RoutablePageMixin):
     content_panels = Page.content_panels + [
         FieldPanel('description'),
         FieldPanel('keywords'),
+        FieldPanel('image'),
     ]
 
     api_fields = [
         APIField('description'),
+        APIField('image', serializer=ImageRenditionField('fill-250x280')),
     ]
 
     search_fields = Page.search_fields + [

@@ -4,6 +4,9 @@ document.querySelector('#support_message').onkeyup = function(e) {
         document.querySelector('#support_submit').click();
     }
 };
+function load_message(){
+  
+}
 document.querySelector('#support_submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#support_message');
     const message = messageInputDom.value;
@@ -42,7 +45,7 @@ document.querySelector('#support_submit').onclick = function(e) {
                     });
                   } else {
                       var message_recive = response.status;
-                      $("#support_log").val(message_recive);
+                      $("#support_log").prepend(`<h2> ${message_recive} </h2>`);
                   }
                 },
                 error: function(xhr, status, error) {

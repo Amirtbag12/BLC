@@ -56,7 +56,7 @@ def support_add(request):
         return JsonResponse({'status':"درخواست معتبر نیست", 'success': False})
 
 @login_required
-def support_room(request):
+def support_room(request, room):
     return render(request, 'support/room.html')
 
 @login_required

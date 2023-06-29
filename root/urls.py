@@ -24,10 +24,10 @@ import os.path
 
 # NOTE : PLEASE KEEP THIS FILE SAFE !
 urlpatterns = [
-    path("support/<str:room_name>/", support_room, name="Support_room"),
     path('api/support/', SupportViewSet.as_view(), name='support-api'),
     path('support/message', support_message, name='support_message'),
     path(SUPPORT_PAGE, support_index, name="Support_ADMINISTRATOR"),
+    path("support/<room>/", support_room, name="Support_room"),
     path('api/cart/', CartViewSet.as_view(), name='cart-api'),
     path('support/add',support_add, name="Support_add"),
     path('api-auth/', include('rest_framework.urls')),

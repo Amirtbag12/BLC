@@ -14,10 +14,13 @@ messageInputDom.addEventListener('keyup', function(e) {
 
 // Handle submit button click
 submitButtonDom.addEventListener('click', function(e) {
+  let currentPath = window.location.pathname;
+  let slug = currentPath.split('/').filter(Boolean).pop();
   const message = messageInputDom.value;
   if (message) {
     const support_status = "active";
     const data = {
+      'support_room': slug,
       'support_message': message,
       'support_status': support_status,
       'csrfmiddlewaretoken': token,
@@ -60,9 +63,11 @@ submitButtonDom.addEventListener('click', function(e) {
 
 // Function to poll for new messages
 function pollMessages(timestamp) {
+  let currentPath = window.location.pathname;
+  let slug = currentPath.split('/').filter(Boolean).pop();
   $.ajax({
     url: '/support/get_message',
-    data: { 'timestamp': timestamp },
+    data: { 'timestamp': timestamp, 'support_room': slug,},
     success: function(data) {
       const messages = data.messages;
       for (const message of messages) {
@@ -74,13 +79,13 @@ function pollMessages(timestamp) {
       } else {
         setTimeout(function() {
           pollMessages(timestamp);
-        }, 5000);
+        }, 2000);
       }
     },
     error: function(xhr, status, error) {
       setTimeout(function() {
         pollMessages(timestamp);
-      }, 5000);
+      }, 2000);
     },
     timeout: 30000,
     dataType: 'json'
@@ -101,11 +106,11 @@ function fetchLatestMessages() {
         let support_timestamp = results[results.length - 1].timestamp;
         pollMessages(support_timestamp);
       } else {
-        setTimeout(fetchLatestMessages, 5000);
+        setTimeout(fetchLatestMessages, 2000);
       }
     },
     error: function(xhr, status, error) {
-      setTimeout(fetchLatestMessages, 5000);
+      setTimeout(fetchLatestMessages, 2000);
     }
   });
 }

@@ -24,7 +24,7 @@ class CartViewSet(generics.ListCreateAPIView):
 class SupportViewSet(generics.ListCreateAPIView):
     queryset = Support.objects.all()
     serializer_class = SupportSerializer
-    ordering_fields = ['support_user','message','support_status','timestamp',]
+    ordering_fields = ['room', 'support_user','message','support_status','timestamp',]
     search_fields = ['support_user']
     
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
@@ -40,10 +40,12 @@ def support_add(request):
             try:
                 support_user = request.user.phoneNumber
                 support_status = request.POST.get('support_status')
-                if (Support.objects.filter(user=request.user.phoneNumber)):
+                support_room = request.POST.get('support_room')
+                if (Support.objects.filter(room = support_room ,support_user=request.user.phoneNumber)):
                     return JsonResponse({'status':"شما در حال حاظر یک پشتیبانی فعال دارید", 'success': False})
                 else:
                     Support.objects.create(
+                        room = support_room,
                         support_user = support_user,
                         support_status = support_status,
                         user_message0 = 'welcome',

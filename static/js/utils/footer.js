@@ -2,6 +2,7 @@ function support(user){
     let token = $('input[name=csrfmiddlewaretoken]').val();
     let support_status = 'active';
     let data = {
+      'support_room': user,
       'support_status': support_status,
       csrfmiddlewaretoken: token,
     }

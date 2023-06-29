@@ -91,6 +91,7 @@ class Comparison(models.Model):
 
 
 class Support(models.Model):
+    room = models.CharField(max_length=100, verbose_name='اتاق', null=True, blank=True)
     support_user = models.CharField(max_length=100, verbose_name='کاربر', null=True, blank=True)
     message = models.TextField(verbose_name='پیام', null=True, blank=True)
     support_status = models.CharField(max_length=100, verbose_name='وضعیت پشتیبانی', null=True, blank=True)

@@ -6,7 +6,7 @@ developer : #ABS
 
 # Import all requirements
 from cart.views import CartViewSet, support_index, support_room, support_add, SupportViewSet
-from .local_settings import SUPPORT_PAGE, DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API
+from .local_settings import DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API
 from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls import handler404, handler500
 from wagtail.admin import urls as wagtailadmin_urls
@@ -26,7 +26,6 @@ import os.path
 urlpatterns = [
     path('api/support/', SupportViewSet.as_view(), name='support-api'),
     path('support/post_message', post_message, name='post_message'),
-    path(SUPPORT_PAGE, support_index, name="Support_ADMINISTRATOR"),
     path('support/get_message', get_message, name='get_message'),
     path("support/<room>/", support_room, name="Support_room"),
     path('api/cart/', CartViewSet.as_view(), name='cart-api'),

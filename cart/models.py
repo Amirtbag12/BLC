@@ -1,5 +1,7 @@
 from user_accounts.models import user_accounts as User
 from product.models import InventoryItem
+from datetime import datetime, time
+from django.utils import timezone
 from django.db import models
 
 
@@ -98,5 +100,25 @@ class Support(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     
     class Meta:
-        verbose_name = 'پشتیبانی کاربر'
-        verbose_name_plural = 'پشتیبانی کاربران'
+        verbose_name = 'تاریخچه پیام پشتیبانی'
+        verbose_name_plural = 'تاریخچه پیام های پشتیبانی'
+
+
+class SupportRequest(models.Model):
+    user = models.CharField(max_length=100, verbose_name='کاربر', null=True, blank=True)
+    operator = models.CharField(max_length=100, verbose_name='پشتیبان', null=True, blank=True)
+    request_submit =  models.TimeField(auto_now_add=True, null=True, blank=True, verbose_name='زمان ثبت درخواست')
+    support_request = models.CharField(max_length=100, verbose_name='درخواست پشتیبانی', null=True, blank=True)
+
+    def wait(self):
+    current_time = timezone.now().time()
+    submit_time = self.request_submit
+    if current_time < submit_time:
+        current_time += time(24, 0, 0)
+    wait_time = current_time - submit_time
+    return wait_time
+
+    class Meta:
+        verbose_name = 'درخواست پشتیبانی'
+        verbose_name_plural = 'درخواست های پشتیبانی'
+

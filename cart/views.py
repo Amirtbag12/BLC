@@ -5,11 +5,11 @@ from django.views.generic import ListView, DetailView
 from django.views.decorators.csrf import csrf_exempt
 from product.models import InventoryItem, Discount
 from django.http import HttpRequest, JsonResponse
+from .models import Cart, Support, SupportRequest
 from django.shortcuts import render, redirect
+from rest_framework import generics, filters
 from product.forms import DiscountForm
 from django.contrib import messages
-from rest_framework import generics, filters
-from .models import Cart, Support
 
 
 class CartViewSet(generics.ListCreateAPIView):
@@ -48,7 +48,11 @@ def support_add(request):
                         room = support_room,
                         support_user = support_user,
                         support_status = support_status,
-                        user_message0 = 'welcome',
+                        message = 'welcome',
+                    )
+                    SupportRequest.objects.create(
+                        user = support_user,
+                        support_request = support_room,
                     )
                     return JsonResponse({'status':"پشتیبانی با موفقیت ایجاد شد. اکنون به صفحه پشتیبانی منتقل میشوید", 'success': True})
             except:

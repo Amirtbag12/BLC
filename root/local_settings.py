@@ -19,10 +19,10 @@ LOCAL_ACCOUNT_USERNAME_BLACKLIST = ["admin", 'security', 'secure', 'protection',
            'virus', 'vulnerabilityassessment', 'zeroday', "god"]
 
 # CSRF LOCAL TRUSTED ORIGINS :
-CSRF_LOCAL_TRUSTED_ORIGINS = ['https://8004-amirtbag12-blc-omie2tnevib.ws-eu101.gitpod.io']
+CSRF_LOCAL_TRUSTED_ORIGINS = ['https://amirtbag12-redesigned-disco-vx4w5gv4g9g2vq6-8000.preview.app.github.dev']
 
 # ALLOWED LOCAL HOSTS :
-ALLOWED_LOCAL_HOSTS = ['8004-amirtbag12-blc-omie2tnevib.ws-eu101.gitpod.io', '127.0.0.1', 'localhost']
+ALLOWED_LOCAL_HOSTS = ['amirtbag12-redesigned-disco-vx4w5gv4g9g2vq6-8000.preview.app.github.dev', '127.0.0.1', 'localhost']
 
 # SECRET KEY
 SEC_KEY = 'django-insecure-38n_&5$5ga9)#!-r$&jcyk3^v^673x0u3%f8)*4ekxrd$)=ujs'
@@ -49,7 +49,7 @@ DEVELOPERS_PANEL = 'UNIQUEDEVELOPER174/'
 SUPPORT_PAGE = 'UNIQUESUPPORT174/'
 
 # BASE_SITE
-BASE_ACTIVE_SITE = '8004-amirtbag12-blc-omie2tnevib.ws-eu101.gitpod.io'
+BASE_ACTIVE_SITE = 'amirtbag12-redesigned-disco-vx4w5gv4g9g2vq6-8000.preview.app.github.dev'
 
 # SITE API URL
 SITE_API = 'UNIQUEAPI174/'

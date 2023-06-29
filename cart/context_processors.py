@@ -1,4 +1,9 @@
-from .models import Cart, Favourite, Comparison
+from .models import Cart, Favourite, Comparison, SupportRequest
+
+
+def support_requests(request):
+    support_requests = SupportRequest.objects.all()
+    return {'support_requests': support_requests}
 
 def cart_items(request):
     if request.user.is_authenticated:

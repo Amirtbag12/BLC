@@ -1,5 +1,6 @@
+from .models import Cart, Comparison, Support, SupportRequest
 from django.contrib import admin
-from .models import Cart, Comparison, Support
+
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'product_title', 'quantity', 'price', 'image', 'color')
@@ -20,3 +21,10 @@ class SupportAdmin(admin.ModelAdmin):
     search_fields = ('support_user',)
 
 admin.site.register(Support, SupportAdmin)
+
+
+class SupportRequestAdmin(admin.ModelAdmin):
+    list_display = ('user','support_request','operator','request_submit',)
+    search_fields = ('user','operator',)
+
+admin.site.register(SupportRequest, SupportRequestAdmin)

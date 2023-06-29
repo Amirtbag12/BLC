@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+{% block TITLE %} درخواست های پشتیبانی {% endblock %}
+{% block CONTENT %}
+{% for support in support_requests %}
+<div class="row" style="text-align: center;">
+    <label>کاربر در خواست دهنده :</label>
+    <h4> {{support.user}} </h4><br>
+    <label>زمان انتظار</label>
+    <h4> {{support.wait}} </h4><br>
+    {% if support.operator %}
+    <button class="btn btn-outline-danger" disabled>درخواست پشتیبانی توسط {{support.operator}} تایید شده و در حال انجام است</button>
+     {% else %}
+     <button class="btn btn-outline-danger" onclick="get_support('{{support.support_request}}');">پشتیبانی کاربر</button>
+      {% endif %}
+</div>
+{% endfor %}
+{% block JS %}
+<script>
+function get_support(room){
+    window.open('/support/' + room + '/', '_blank');
+}
+</script>
+{% endblock %}
+{% endblock %}

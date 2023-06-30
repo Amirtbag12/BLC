@@ -21,11 +21,6 @@
     <div class="container">
             <a class="brand" href="/">آنالیز ترافیک</a>
             <ul class="btn btn-mini">
-                {% if request.user.is_authenticated or user.is_authenticated %}
-                        <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>
-                {% else %}
-                        <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
-                {% endif %}
             </ul>
             <div class="nav-collapse">
         </div>
@@ -236,7 +231,7 @@
         <div class="span6">
              <div class="widget widget-table action-table">
                 <div class="widget-header"> <i class="fa fa-group"></i>
-                  <h3>Online</h3><i class="fa fa-minus"></i>
+                  <h3>Online: {{ online_users }}</h3><i class="fa fa-minus"></i>
                   <div id="refresh-online">
                   </div>
                 </div>

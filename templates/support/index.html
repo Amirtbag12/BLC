@@ -61,6 +61,7 @@
 {% endblock %}
 
 {% block content %}
+<p>کاربران آنلاین: {{ online_users }}</p>
 {% include "wagtailadmin/shared/header.html" with title="پشتیبانی آنلاین" icon="tablet-alt" %}
 {% for support in support_requests %}
 <div class="row" style="text-align: center;">

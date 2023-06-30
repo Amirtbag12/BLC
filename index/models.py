@@ -86,3 +86,24 @@ class Comments_like(models.Model):
     class Meta:
         verbose_name = 'لایک و دیسلایک'
         verbose_name_plural = 'لایک ها و دیسلایک ها'
+
+class Visit(models.Model):
+    visit_count = models.IntegerField(default=0, verbose_name='جمع بازدید', null=True, blank=True)
+    last_visit_url = models.CharField(max_length=200, verbose_name='آخرین آدرس بازدید شده', null=True, blank=True)
+    ip_address = models.GenericIPAddressField( verbose_name='آدرس آیپی', null=True, blank=True)
+    session_key = models.GenericIPAddressField( verbose_name='کلید نشست', null=True, blank=True)
+    browser = models.CharField(max_length=200, verbose_name='مروگر', null=True, blank=True)
+    browser_version = models.CharField(max_length=200, verbose_name='نسخه مرورگر', null=True, blank=True)
+    os = models.CharField(max_length=200, verbose_name='سیستم عامل', null=True, blank=True)
+    os_version = models.CharField(max_length=200, verbose_name='نسخه سیستم عامل', null=True, blank=True)
+    device = models.CharField(max_length=200, verbose_name='دستگاه', null=True, blank=True)
+    last_visit_time = models.DateTimeField(auto_now=True, verbose_name='آخرین سابقه بازدید', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='ایجاد شده در', null=True, blank=True)
+
+    def increment_visit_count(self):
+        self.visit_count += 1
+        self.save()
+
+    class Meta:
+        verbose_name = 'بازدید'
+        verbose_name_plural = 'آمار بازدید'

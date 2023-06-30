@@ -95,11 +95,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'user_visit.middleware.UserVisitMiddleware',
+    'index.middleware.UniqueVisitsMiddleware',
 
     # Wagtail MIDDLEWARE
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
+#geo ip database
+GEOIP_PATH = 'root.dbip-country-lite-2023-06.mmdb'
 
 # urls configuration
 ROOT_URLCONF = 'root.urls'

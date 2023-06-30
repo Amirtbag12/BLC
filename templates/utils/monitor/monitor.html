@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="{% static "monitor/img/favicon.ico" %}">
-    <title>{% block title %}PyDash v{{ version }}{% endblock %}</title>
+    <title>ترافیک وبگاه</title>
     <link href="{% static 'monitor/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static "monitor/css/bootstrap-responsive.min.css" %}" rel="stylesheet">
     <link href="{% static "monitor/css/fonts.css" %}" rel="stylesheet">
@@ -20,7 +20,7 @@
 <div class="navbar navbar-fixed-top" style="">
     <div class="navbar-inner">
     <div class="container">
-            <a class="brand" href="/">pyDash v{{ version }}</a>
+            <a class="brand" href="/">آنالیز ترافیک</a>
             <ul class="btn btn-mini">
                 {% if request.user.is_authenticated or user.is_authenticated %}
                         <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>

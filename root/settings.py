@@ -17,6 +17,9 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SET BASE DIR
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# ONLINE USERS TIMEOUT
+ONLINE_USERS_TIMEOUT = 60
+
 # Site cookie
 SESSION_COOKIE_AGE = 86400
 
@@ -95,6 +98,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'user_visit.middleware.UserVisitMiddleware',
+    'index.middleware.OnlineVisitorsMiddleware',
     'index.middleware.UniqueVisitsMiddleware',
 
     # Wagtail MIDDLEWARE
@@ -120,6 +124,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'index.context_processors.daily_visit',
+                'index.context_processors.online_users',
+                'index.context_processors.visitors',
                 'cart.context_processors.favourite_items',
                 'cart.context_processors.cart_items',
                 'cart.context_processors.comparison_items',

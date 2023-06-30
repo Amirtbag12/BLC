@@ -1,6 +1,17 @@
-from .models import Comments, Comments_like
+from .models import Comments, Comments_like, Visit
+from django.contrib.sessions.models import Session
 from user_visit.models import UserVisit as uv
+from django.conf import settings
 
+
+def online_users(request):
+    session_keys = settings.CACHE.get('online_users', [])
+    sessions = Session.objects.filter(session_key__in=session_keys)
+    return {'online_users': sessions.count()}
+
+def visitors(request):
+    visit = Visit.objects.all()
+    return {'visitors':visit}
 
 def daily_visit(request):
     visit = uv.objects.all()

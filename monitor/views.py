@@ -1,20 +1,22 @@
-import platform
-import os
-import multiprocessing
-from datetime import timedelta
-
+from .settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET, VERSION
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from root.local_settings import DEVELOPERS_PANEL
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.shortcuts import render
+from datetime import timedelta
+import multiprocessing
+import platform
+import os
 
-from .settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET, VERSION
 
 time_refresh = TIME_JS_REFRESH
 time_refresh_long = TIME_JS_REFRESH_LONG
 time_refresh_net = TIME_JS_REFRESH_NET
 version = VERSION
 
+@user_passes_test(lambda u: u.is_staff, login_url=f'/{DEVELOPERS_PANEL}')
 def index(request):
     context = {'time_refresh': time_refresh, 'time_refresh_long': time_refresh_long, 'time_refresh_net': time_refresh_net, 'version': version}
     return render(request, 'utils/monitor/monitor.html', context)

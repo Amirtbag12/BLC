@@ -16,7 +16,8 @@ time_refresh_net = TIME_JS_REFRESH_NET
 version = VERSION
 
 def index(request):
-    return render(request, 'utils/monitor/monitor.html')
+    context = {'time_refresh': time_refresh, 'time_refresh_long': time_refresh_long, 'time_refresh_net': time_refresh_net, 'version': version}
+    return render(request, 'utils/monitor/monitor.html', context)
 
 
 def chunks(get, n):
@@ -306,7 +307,3 @@ def get_netstat():
         data = str(err)
 
     return data
-
-def getall(request):
-    context = {'time_refresh': time_refresh, 'time_refresh_long': time_refresh_long, 'time_refresh_net': time_refresh_net, 'version': version}
-    return render(request, 'main.html', context)

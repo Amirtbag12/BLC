@@ -6,7 +6,7 @@ developer : #ABS
 
 # Import all requirements
 from cart.views import CartViewSet, support_index, support_room, support_add, SupportViewSet
-from .local_settings import DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API
+from .local_settings import DEVELOPERS_PANEL, ADMINS_PANEL, SITE_API, SITE_TRAFFIC
 from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls import handler404, handler500
 from wagtail.admin import urls as wagtailadmin_urls
@@ -35,6 +35,7 @@ urlpatterns = [
     path('UsersAccounts/', include('allauth.urls')),
     path(ADMINS_PANEL, include(wagtailadmin_urls)),
     path('UNIQUEDOC/', include(wagtaildocs_urls)),
+    path(SITE_TRAFFIC, include("monitor.urls")),
     path(DEVELOPERS_PANEL, admin.site.urls),
     path('cart/', include('cart.urls')),
     path(SITE_API, api_router.urls),

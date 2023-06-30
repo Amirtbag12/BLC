@@ -5,6 +5,7 @@ developer : #ABS
 """
 
 # Import all requirements
+from django.core.cache.backends.locmem import LocMemCache
 from .local_settings import *
 from pathlib import Path
 import locale
@@ -17,8 +18,19 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SET BASE DIR
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# SITE CACHES
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-location',
+    }
+}
+
+# cache location
+CACHE = LocMemCache('unique-location', {})
+
 # ONLINE USERS TIMEOUT
-ONLINE_USERS_TIMEOUT = 60
+ONLINE_USERS_TIMEOUT = 30
 
 # Site cookie
 SESSION_COOKIE_AGE = 86400
@@ -72,6 +84,7 @@ INSTALLED_APPS = [
     'user_accounts',
     'category',
     'product',
+    'monitor',
     'index',
     'brand',
     'blog',
@@ -101,7 +114,6 @@ MIDDLEWARE = [
     'index.middleware.OnlineVisitorsMiddleware',
     'index.middleware.UniqueVisitsMiddleware',
 
-    # Wagtail MIDDLEWARE
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -169,7 +181,7 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'MDBDB',
+        'NAME': 'SKY_KEY',
     }
 }
 

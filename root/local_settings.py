@@ -48,6 +48,9 @@ DEVELOPERS_PANEL = 'UNIQUEDEVELOPER174/'
 # Support_page :
 SUPPORT_PAGE = 'UNIQUESUPPORT174/'
 
+# Site Traffic
+SITE_TRAFFIC = 'UNIQUETRAFFIC174/'
+
 # BASE_SITE
 BASE_ACTIVE_SITE = 'amirtbag12-redesigned-disco-vx4w5gv4g9g2vq6-8004.preview.app.github.dev'
 
